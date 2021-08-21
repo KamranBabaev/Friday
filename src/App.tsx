@@ -10,7 +10,7 @@ import {Header} from "./components/Header/Header";
 import {RestorePassword} from './components/RestorePassword/RestorePassword';
 
 
-//rad
+
 function App() {
     return (
         <div className="App">

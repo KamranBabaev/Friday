@@ -8,6 +8,6 @@ body {
     font-family: "Source Sans Pro", sans-serif;
     font-size: 18px;
     background: rgb(34,141,195);
-    background: linear-gradient(45deg, rgba(34,141,195,1) 0%, rgba(45,253,173,1) 100%);
+    background: linear-gradient(45deg, rgba(34,141,195,1) 0, rgba(45,253,173,1) 100%);
     box-sizing: border-box;
 }

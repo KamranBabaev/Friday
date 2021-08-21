@@ -5,7 +5,7 @@ export const RestorePassword = () => {
         <div>
             <h1>Restore Password</h1>
             <h2>Forgot your password?</h2>
-            <SuperInput inputHeader="Email" inputText={""}/>
+            <SuperInput inputHeader={''} inputText={""}/>
             <p>Enter your email address and we will send you further instruction</p>
             <button>SuperButton</button>
             <p>Did you remember your password?</p>

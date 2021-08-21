@@ -1,3 +1,4 @@
+import {ChangeEvent} from 'react';
 
 type PropsType = {
     inputHeader: string
@@ -5,8 +6,13 @@ type PropsType = {
 }
 
 const SuperInputText = (props: PropsType) => {
+    const textValue=(e:ChangeEvent<HTMLInputElement>)=>{
+      return   e.currentTarget.value
+    }
     return (
-        <div>{props.inputHeader}</div>
+        <div>
+            <input value={props.inputHeader} onChange={textValue}/>
+        </div>
     )
 }
 
