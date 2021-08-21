@@ -1,3 +1,4 @@
+
 type PropsType = {
     inputHeader: string
     inputText: string
@@ -5,10 +6,7 @@ type PropsType = {
 
 const SuperInputText = (props: PropsType) => {
     return (
-        <div>
-            <div>{props.inputHeader}</div>
-            <input/>
-        </div>
+        <div>{props.inputHeader}</div>
     )
 }
 
