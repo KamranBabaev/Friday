@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px auto;
+    border-radius: 15px;
+    background-color: white;
+    width: 420px;
+    height: 600px;
+    padding: 20px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+}
+
+.titleApp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    opacity: 0.8;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    align-items: center;
+}
+
+.item {
+    margin-bottom: 20px;
+}
+
+.item p {
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.inputBlock {
+    width: 320px;
+    border-bottom: 2px solid #8c8a8a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.inputBlock input, .inputBlock input:hover, .inputBlock input:active {
+    outline: none;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+}
+
+.inputBlock img {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.inputBlock img:hover {
+    opacity: 1;
+    cursor: pointer;
+}

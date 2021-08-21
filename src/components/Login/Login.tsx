@@ -1,4 +1,5 @@
 import styles from './Login.module.css'
+import stylesContainer from '../common/styles/Container.module.css'
 import {useState} from "react";
 import eye from "../common/icons/eye.png"
 import closedEye from "../common/icons/closedEye.png"
@@ -12,31 +13,35 @@ export const Login = () => {
     setOpenPassword(!openPassword)
   }
 
-
   return (
-      <div className={styles.login}>
-        <form className={styles.form}>
-          <div className={styles.nameProject}>Brain storm</div>
-          <div className={styles.title}>Sign in</div>
-          <div className={styles.item}>
+      <div className={stylesContainer.container}>
+
+        <div className={stylesContainer.titleApp}>
+          <h1>Brain storm</h1>
+          <h2>Sign in</h2>
+        </div>
+
+        <form className={stylesContainer.form}>
+          <div className={stylesContainer.item}>
             <p>Email:</p>
-            <div className={styles.inputBlock}>
-              <input type="text"/>
+            <div className={stylesContainer.inputBlock}>
+              <input type="text" placeholder="example@ddd.com"/>
             </div>
           </div>
-          <div className={styles.item}>
+          <div className={stylesContainer.item}>
             <p>Password:</p>
-            <div className={styles.inputBlock}>
-              <input type={openPassword ? "text" : "password"}/>
+            <div className={stylesContainer.inputBlock}>
+              <input type={openPassword ? "text" : "password"}
+                     placeholder="****"/>
               <img onClick={changeViewPassword} alt=''
                    src={openPassword ? eye : closedEye}/>
             </div>
           </div>
-          <div className={styles.checkbox + " " + styles.item}>
-            <input type="checkbox"/>
+          <div className={styles.rememberMe}>
+            <input className={styles.checkbox} type="checkbox"/>
             <span>remember me</span>
           </div>
-          <SuperButton title="Login"/>
+          <SuperButton disabled={false} title="Login"/>
         </form>
       </div>
   )
