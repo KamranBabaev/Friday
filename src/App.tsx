@@ -9,6 +9,8 @@ import {Error404} from './components/Error404/Error404';
 import {Header} from "./components/Header/Header";
 import {RestorePassword} from './components/RestorePassword/RestorePassword';
 
+
+//rad
 function App() {
     return (
         <div className="App">
