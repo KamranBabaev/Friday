@@ -36,7 +36,7 @@ export const Login = () => {
             <input type="checkbox"/>
             <span>remember me</span>
           </div>
-          <SuperButton title="Login"/>
+          <SuperButton disabled={false} title="Login"/>
         </form>
       </div>
   )
