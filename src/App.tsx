@@ -18,7 +18,7 @@ function App() {
       <div className="App">
         <Header/>
         <Switch>
-          <Route path={'/login'}
+          <Route exact path={'/login'}
                  render={() => <Login/>}/>
           <Route path={'/profile'}
                  render={() => <Profile/>}/>
@@ -33,10 +33,6 @@ function App() {
           <Route path={'*'}
                  render={() => <Error404/>}/>
         </Switch>
-
-        <SuperInputText/>
-        <SuperCheckbox/>
-        <SuperButton/>
       </div>
   );
 }
