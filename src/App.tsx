@@ -13,6 +13,8 @@ import {InputPassword} from './components/InputPassword/InputPassword';
 import {Error404} from './components/Error404/Error404';
 import {Header} from "./components/Header/Header";
 
+
+//rad
 function App() {
   return (
       <div className="App">
@@ -34,9 +36,6 @@ function App() {
                  render={() => <Error404/>}/>
         </Switch>
 
-        <SuperInputText/>
-        <SuperCheckbox/>
-        <SuperButton/>
       </div>
   );
 }
