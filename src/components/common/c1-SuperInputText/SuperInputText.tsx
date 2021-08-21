@@ -1,13 +1,15 @@
 type PropsType = {
-  inputHeader: string
-  inputText: string
+    inputHeader: string
+    inputText: string
 }
 
-export const SuperInputText = (props: PropsType) => {
-  return (
-      <div>
-        <input value={props.inputText}/>
-      </div>
-  )
+const SuperInputText = (props: PropsType) => {
+    return (
+        <div>
+            <div>{props.inputHeader}</div>
+            <input/>
+        </div>
+    )
 }
 
+export default SuperInputText

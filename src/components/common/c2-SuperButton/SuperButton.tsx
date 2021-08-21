@@ -11,7 +11,7 @@ type SuperButtonPropsType = {
 export function SuperButton(props: SuperButtonPropsType) {
     return (
         <div>
-            <button  className={styles.btn}>{props.title}</button>
+            <button className={styles.btn}>{props.title}</button>
         </div>
     )
 }
