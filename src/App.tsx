@@ -12,6 +12,7 @@ import {TestPage} from './components/TestPage/TestPage';
 import {InputPassword} from './components/InputPassword/InputPassword';
 import {Error404} from './components/Error404/Error404';
 import {Header} from "./components/Header/Header";
+import SuperInput from "./components/common/c1-SuperInputText/SuperInputText";
 
 function App() {
   return (
@@ -34,9 +35,7 @@ function App() {
                  render={() => <Error404/>}/>
         </Switch>
 
-        <SuperInputText/>
-        <SuperCheckbox/>
-        <SuperButton/>
+         <SuperInput inputText="some text" inputHeader={"login"}/>
       </div>
   );
 }
