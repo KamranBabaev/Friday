@@ -1,16 +1,10 @@
-type SuperInputPropsType = {
-    inputHeader: string
-    inputText: string
 
-}
 
-function SuperInput(props: SuperInputPropsType) {
+
+const SuperInputText = () => {
     return (
-        <div>
-            <div>{props.inputHeader}</div>
-            <input/>
-        </div>
+        <div>1</div>
     )
 }
 
-export default SuperInput
+export default SuperInputText

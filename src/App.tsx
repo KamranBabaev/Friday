@@ -1,13 +1,13 @@
-import './App.css';import {Route, Switch} from 'react-router-dom';
+import './App.css';
+import {Route, Switch} from 'react-router-dom';
 import {Login} from './components/Login/Login';
 import {Profile} from './components/Profile/Profile';
 import {Registration} from './components/Registration/Registration';
-import {RestorePassword} from './components/RestorePassword/RestorePassword';
 import {TestPage} from './components/TestPage/TestPage';
 import {InputPassword} from './components/InputPassword/InputPassword';
 import {Error404} from './components/Error404/Error404';
 import {Header} from "./components/Header/Header";
-
+import {RestorePassword} from './components/RestorePassword/RestorePassword';
 
 function App() {
     return (
@@ -29,6 +29,7 @@ function App() {
                 <Route path={'*'}
                        render={() => <Error404/>}/>
             </Switch>
+
         </div>
     );
 }
