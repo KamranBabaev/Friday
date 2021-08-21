@@ -20,7 +20,7 @@ export function RestorePassword() {
                 </div>
                 <p>Did you remember your password?</p>
                 <div>
-                    <NavLink to={'/login'}>Try to login</NavLink>
+                    <NavLink className={styles.nawLink} to={'/login'}>TRY TO LOGIN</NavLink>
                 </div>
             </div>
 
