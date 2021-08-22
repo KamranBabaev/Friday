@@ -16,10 +16,10 @@ export const Header = () => {
             <NavLink to={'/registration'}>Registration</NavLink>
           </div>
           <div>
-            <NavLink to={'/restorpassword'}>Restorpassword</NavLink>
+            <NavLink to={'/restorpassword'}>Restore password</NavLink>
           </div>
           <div>
-            <NavLink to={'/inputpassword'}>Inputpassword</NavLink>
+            <NavLink to={'/inputpassword'}>Input password</NavLink>
           </div>
         </div>
       </div>
