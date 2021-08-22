@@ -16,7 +16,7 @@ export const RestorePassword = () => {
             </div>
 
             <p>Enter your email address and we will send you further instruction</p>
-            <SuperButton title="Send Instructions"/>
+            <SuperButton disabled={false} title="Send Instructions"/>
             <p>Did you remember your password?</p>
             <a href=""> Try loginning in</a>
         </div>
