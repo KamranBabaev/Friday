@@ -4,10 +4,9 @@ type PropsType = {
     inputText: string
 }
 
-const SuperInputText = (props: PropsType) => {
+export const SuperInputText = (props: PropsType) => {
     return (
         <div>{props.inputHeader}</div>
     )
 }
 
-export default SuperInputText

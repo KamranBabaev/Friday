@@ -10,30 +10,29 @@ import {Header} from "./components/Header/Header";
 import {RestorePassword} from './components/RestorePassword/RestorePassword';
 
 
-
 function App() {
-  return (
-      <div className="App">
-        <Header/>
-        <Switch>
-          <Route path={'/login'}
-                 render={() => <Login/>}/>
-          <Route path={'/profile'}
-                 render={() => <Profile/>}/>
-          <Route path={'/registration'}
-                 render={() => <Registration/>}/>
-          <Route path={'/restorpassword'}
-                 render={() => <RestorePassword/>}/>
-          <Route path={'/testPage'}
-                 render={() => <TestPage/>}/>
-          <Route path={'/inputpassword'}
-                 render={() => <InputPassword/>}/>
-          <Route path={'*'}
-                 render={() => <Error404/>}/>
-        </Switch>
+    return (
+        <div className="App">
+            <Header/>
+            <Switch>
+                <Route path={'/login'}
+                       render={() => <Login/>}/>
+                <Route path={'/profile'}
+                       render={() => <Profile/>}/>
+                <Route path={'/registration'}
+                       render={() => <Registration/>}/>
+                <Route path={'/restorpassword'}
+                       render={() => <RestorePassword/>}/>
+                <Route path={'/testPage'}
+                       render={() => <TestPage/>}/>
+                <Route path={'/inputpassword'}
+                       render={() => <InputPassword/>}/>
+                <Route path={'*'}
+                       render={() => <Error404/>}/>
+            </Switch>
 
-      </div>
-  );
+        </div>
+    );
 }
-// com
+
 export default App;
