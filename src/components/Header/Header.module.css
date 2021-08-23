@@ -14,7 +14,7 @@
     justify-content: space-around;
 }
 
-.navHeader a, a:active {
+.header .navHeader a, .header .navHeader a:active {
     text-decoration: none;
     display: inline-block;
     margin: 0;
