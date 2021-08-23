@@ -24,6 +24,9 @@ export const Header = () => {
           <div>
             <NavLink to={'/error404'}>Error404</NavLink>
           </div>
+          <div>
+             <NavLink to={'/inputemail'}>Input Email</NavLink>
+          </div>
         </div>
       </div>
   )
