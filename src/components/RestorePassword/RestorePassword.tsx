@@ -11,7 +11,6 @@ export const RestorePassword = () => {
           <h1>Brain storm</h1>
           <h3>Forgot your password?</h3>
         </div>
-
         <form className={stylesContainer.form}>
           <div className={stylesContainer.item}>
             <p>Email:</p>
