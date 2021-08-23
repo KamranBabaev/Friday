@@ -1,16 +1,44 @@
 import styles from './Login.module.css'
 import stylesContainer from '../common/styles/Container.module.css'
-import {useState} from "react";
-import eye from "../common/icons/eye.png"
-import closedEye from '../common/icons/closedEye.png'
+import {ChangeEvent, useState} from "react";
+import eye from "../common/icons/eye.png";
+import closedEye from "../common/icons/closedEye.png";
 import {SuperButton} from '../common/c2-SuperButton/SuperButton';
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../redux/store";
+import {loginTC} from "../../redux/reducers/reducer";
+import {Redirect} from "react-router-dom";
 
 export const Login = () => {
 
+  const dispatch = useDispatch()
+  const authMe = useSelector<AppRootStateType, boolean>(state => state.login.authMe)
+
   const [openPassword, setOpenPassword] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [checked, setChecked] = useState(false)
 
   const changeViewPassword = () => {
     setOpenPassword(!openPassword)
+  }
+
+  const emailTarget = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.currentTarget.value)
+  }
+
+  const passwordTarget = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.currentTarget.value)
+  }
+  const loginHandler = () => {
+    dispatch(loginTC(email, password, checked))
+    setEmail('')
+    setPassword('')
+    setChecked(false)
+  }
+
+  if (authMe) {
+    return <Redirect to={'/profile'}/>
   }
 
   return (
@@ -25,23 +53,32 @@ export const Login = () => {
           <div className={stylesContainer.item}>
             <p>Email:</p>
             <div className={stylesContainer.inputBlock}>
-              <input type="text" placeholder="example@ddd.com"/>
+              <input onChange={emailTarget}
+                     value={email}
+                     type="text"
+                     placeholder="example@ddd.com"/>
             </div>
           </div>
           <div className={stylesContainer.item}>
             <p>Password:</p>
             <div className={stylesContainer.inputBlock}>
-              <input type={openPassword ? "text" : "password"}
+              <input onChange={passwordTarget}
+                     value={password}
+                     type={openPassword ? "text" : "password"}
                      placeholder="****"/>
               <img onClick={changeViewPassword} alt=''
                    src={openPassword ? eye : closedEye}/>
             </div>
           </div>
           <div className={styles.rememberMe}>
-            <input className={styles.checkbox} type="checkbox"/>
+            <input onClick={() => setChecked(!checked)}
+                   className={styles.checkbox}
+                   type="checkbox"/>
             <span>remember me</span>
           </div>
-          <SuperButton disabled={false} title="Login"/>
+          <SuperButton disabled={false}
+                       title="Login"
+                       loginHandler={loginHandler}/>
         </form>
       </div>
   )
