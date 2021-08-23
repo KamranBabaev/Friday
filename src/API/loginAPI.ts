@@ -9,11 +9,19 @@ type requestPostType = any
 
 
 export const LoginAPI = {
-  authMe(email: any, password: string, rememberMe: boolean) {
+  authMe(email: string, password: string, rememberMe: boolean) {
     return instance.post<requestPostType>('/auth/login', {
       email,
       password,
       rememberMe
+    })
+  }
+}
+export const RegistrationAPI = {
+  regMe(email: string, password: string) {
+    return instance.post<requestPostType>('/auth/register', {
+      email,
+      password,
     })
   }
 }

@@ -6,7 +6,7 @@ import closedEye from "../common/icons/closedEye.png";
 import {SuperButton} from '../common/c2-SuperButton/SuperButton';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../redux/store";
-import {loginTC} from "../../redux/reducers/reducer";
+import {loginTC} from "../../redux/reducers/reducerLogin";
 import {Redirect} from "react-router-dom";
 
 export const Login = () => {
@@ -78,7 +78,7 @@ export const Login = () => {
           </div>
           <SuperButton disabled={false}
                        title="Login"
-                       loginHandler={loginHandler}/>
+                       onClickHandler={loginHandler}/>
         </form>
       </div>
   )
