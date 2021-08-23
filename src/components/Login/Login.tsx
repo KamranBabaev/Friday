@@ -1,9 +1,9 @@
 import styles from './Login.module.css'
 import stylesContainer from '../common/styles/Container.module.css'
 import {useState} from "react";
-import eye from "../common/icons/eye.png"
-import closedEye from "../common/icons/closedEye.png"
-import {SuperButton} from "../common/c2-SuperButton/SuperButton";
+import eye from "../../iqons/eye.png"
+import closedEye from '../../iqons/closedEye.png'
+import {SuperButton} from '../common/c2-SuperButton/SuperButton';
 
 export const Login = () => {
 
