@@ -1,6 +1,7 @@
 import {SuperButton} from "../common/c2-SuperButton/SuperButton";
 import styles from "./RestorePassword.module.css"
 import stylesContainer from "../common/styles/Container.module.css";
+import {NavLink} from "react-router-dom";
 
 export const RestorePassword = () => {
 
@@ -24,7 +25,10 @@ export const RestorePassword = () => {
               instruction...</p>
             <SuperButton disabled={false} title="Send Instructions"/>
             <p>Did you remember your password?</p>
-            <a href="">Try  logging  in</a>
+            <div>
+              <NavLink className={styles.navLink} to={'/login'}>
+                Try logging in</NavLink>
+            </div>
           </div>
         </form>
       </div>
