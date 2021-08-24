@@ -8,9 +8,12 @@ import {InputPassword} from './components/InputPassword/InputPassword';
 import {Error404} from './components/Error404/Error404';
 import {Header} from "./components/Header/Header";
 import {RestorePassword} from './components/RestorePassword/RestorePassword';
+import {InputEmailForRestorePass} from "./components/InputEmailForRestorePass/InputEmailForRestorePass";
 
 
 function App() {
+
+
     return (
         <div className="App">
             <Header/>
@@ -21,14 +24,16 @@ function App() {
                        render={() => <Profile/>}/>
                 <Route path={'/registration'}
                        render={() => <Registration/>}/>
-                <Route path={'/restorpassword'}
-                       render={() => <RestorePassword/>}/>
                 <Route path={'/testPage'}
                        render={() => <TestPage/>}/>
                 <Route path={'/inputpassword'}
                        render={() => <InputPassword/>}/>
-                <Route path={'*'}
-                       render={() => <Error404/>}/>
+                <Route path={'/inputemail'}
+                       render={() => <InputEmailForRestorePass/>}/>
+                <Route path={`*`}
+                       render={() => <RestorePassword/>}/>
+                {/*<Route path={'*'}
+                       render={() => <Error404/>}/>*/}
             </Switch>
 
         </div>
