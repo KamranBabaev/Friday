@@ -1,4 +1,4 @@
-import {LoginAPI, RegistrationAPI} from '../../API/loginAPI';
+import {RegistrationAPI} from '../../API/loginAPI';
 
 const initState = {
     authoriseMe:false

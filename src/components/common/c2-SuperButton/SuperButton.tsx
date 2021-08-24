@@ -2,17 +2,18 @@ import styles from './SuperButton.module.css'
 
 type SuperButtonPropsType = {
   title: string
-  disabled: boolean
   onClickHandler?: () => void
+  disabledBtn: boolean
 }
 
 
 export function SuperButton(props: SuperButtonPropsType) {
-
+debugger
   return (
       <div>
-        <button onClick={props.onClickHandler}
-                className={props.disabled
+        <button disabled={props.disabledBtn}
+                onClick={props.onClickHandler}
+                className={props.disabledBtn
                     ? styles.btnDisabled
                     : styles.btn}>
           {props.title}
