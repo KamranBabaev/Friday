@@ -19,13 +19,16 @@ export const Header = () => {
             <NavLink to={'/restorpassword'}>Restore password</NavLink>
           </div>
           <div>
+            <NavLink to={'/checkemail'}>Check email</NavLink>
+          </div>
+          <div>
             <NavLink to={'/inputpassword'}>Input password</NavLink>
           </div>
           <div>
             <NavLink to={'/error404'}>Error404</NavLink>
           </div>
           <div>
-             <NavLink to={'/inputemail'}>Input Email</NavLink>
+            <NavLink to={'/inputemail'}>Input Email</NavLink>
           </div>
         </div>
       </div>

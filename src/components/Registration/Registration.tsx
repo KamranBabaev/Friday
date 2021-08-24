@@ -101,10 +101,10 @@ export const Registration = () => {
                 </div>
 
                 <div className={styles.buttons}>
-                    <SuperButton disabled title="Cancel"/>
+                    <SuperButton disabledBtn={false} title="Cancel"/>
                     <SuperButton
                         onClickHandler={registerHandler}
-                        disabled={false} title="Register"/>
+                        disabledBtn={false} title="Register"/>
                 </div>
             </form>
         </div>

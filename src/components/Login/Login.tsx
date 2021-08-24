@@ -30,6 +30,7 @@ export const Login = () => {
   const passwordTarget = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.currentTarget.value)
   }
+
   const loginHandler = () => {
     dispatch(loginTC(email, password, checked))
     setEmail('')
@@ -76,7 +77,7 @@ export const Login = () => {
                    type="checkbox"/>
             <span>remember me</span>
           </div>
-          <SuperButton disabled={false}
+          <SuperButton disabledBtn={false}
                        title="Login"
                        onClickHandler={loginHandler}/>
         </form>

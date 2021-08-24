@@ -9,35 +9,38 @@ import {Error404} from './components/Error404/Error404';
 import {Header} from "./components/Header/Header";
 import {RestorePassword} from './components/RestorePassword/RestorePassword';
 import {InputEmailForRestorePass} from "./components/InputEmailForRestorePass/InputEmailForRestorePass";
+import {CheckEmail} from "./components/CheckEmail/CheckEmail";
 
 
 function App() {
 
 
-    return (
-        <div className="App">
-            <Header/>
-            <Switch>
-                <Route path={'/login'}
-                       render={() => <Login/>}/>
-                <Route path={'/profile'}
-                       render={() => <Profile/>}/>
-                <Route path={'/registration'}
-                       render={() => <Registration/>}/>
-                <Route path={'/testPage'}
-                       render={() => <TestPage/>}/>
-                <Route path={'/inputpassword'}
-                       render={() => <InputPassword/>}/>
-                <Route path={'/inputemail'}
-                       render={() => <InputEmailForRestorePass/>}/>
-                <Route path={`*`}
-                       render={() => <RestorePassword/>}/>
-                {/*<Route path={'*'}
-                       render={() => <Error404/>}/>*/}
-            </Switch>
+  return (
+      <div className="App">
+        <Header/>
+        <Switch>
+          <Route path={'/login'}
+                 render={() => <Login/>}/>
+          <Route path={'/profile'}
+                 render={() => <Profile/>}/>
+          <Route path={'/registration'}
+                 render={() => <Registration/>}/>
+          <Route path={'/testPage'}
+                 render={() => <TestPage/>}/>
+          <Route path={'/checkemail'}
+                 render={() => <CheckEmail/>}/>
+          <Route path={'/inputpassword'}
+                 render={() => <InputPassword/>}/>
+          <Route path={'/inputemail'}
+                 render={() => <InputEmailForRestorePass/>}/>
+          <Route path={`/restorpassword/:token`}
+                 render={() => <RestorePassword/>}/>
+          <Route path={'*'}
+                 render={() => <Error404/>}/>
+        </Switch>
 
-        </div>
-    );
+      </div>
+  );
 }
 
 export default App;
