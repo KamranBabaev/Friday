@@ -17,11 +17,12 @@ export const LoginAPI = {
     })
   }
 }
+
 export const RegistrationAPI = {
   regMe(email: string, password: string) {
     return instance.post<requestPostType>('/auth/register', {
       email,
-      password,
+      password
     })
   }
 }
