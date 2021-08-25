@@ -8,7 +8,7 @@ type SuperButtonPropsType = {
 
 
 export function SuperButton(props: SuperButtonPropsType) {
-debugger
+
   return (
       <div>
         <button disabled={props.disabledBtn}
