@@ -16,7 +16,7 @@ export const reducerRegistration = (state: any = initState, action: actionType) 
 export const registrationAC = (authoriseMe: boolean) => ({
     type: 'REGISTRATION_ME',
     authoriseMe
-} as const)
+} as const )
 
 export const registrationTC = (email: string, password: string,) => (dispatch: any) => {
     const promise = RegistrationAPI.regMe(email, password)
