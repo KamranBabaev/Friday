@@ -63,6 +63,12 @@ export const Login = () => {
                      type="text"
                      placeholder="example@ddd.com"/>
             </div>
+            {(email && (!validateEmail(email))) ?
+                <div className={styles.errorMessage}>incorrect
+                  email!!!</div> : <></>}
+            {(email && (validateEmail(email))) ?
+                <div className={styles.correctMessage}>correct
+                  email</div> : <></>}
           </div>
           <div className={stylesContainer.item}>
             <p>Password:</p>
@@ -74,6 +80,13 @@ export const Login = () => {
               <img onClick={changeViewPassword} alt=''
                    src={openPassword ? eye : closedEye}/>
             </div>
+            {(password) && (password.length < 8) ?
+                <div className={styles.errorMessage}>password should be more
+                  than 7 symbols!!!</div> : <></>}
+            {(password) && (password.length > 7) ?
+                <div className={styles.correctMessage}>correct
+                  password</div> : <></>}
+
           </div>
           <div className={styles.rememberMe}>
             <input onClick={() => setChecked(!checked)}
@@ -81,9 +94,10 @@ export const Login = () => {
                    type="checkbox"/>
             <span>remember me</span>
           </div>
-          <SuperButton disabledBtn={validateEmail(email) && (password.length < 8)}
-                       title="Login"
-                       onClickHandler={loginHandler}/>
+          <SuperButton
+              disabledBtn={validateEmail(email) && (password.length < 8)}
+              title="Login"
+              onClickHandler={loginHandler}/>
         </form>
       </div>
   )
