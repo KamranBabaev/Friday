@@ -8,6 +8,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../redux/store";
 import {loginTC} from "../../redux/reducers/reducerLogin";
 import {Redirect} from "react-router-dom";
+import {validateEmail} from "../common/validation/emailValidation";
+
 
 export const Login = () => {
 
@@ -29,17 +31,7 @@ export const Login = () => {
     }
     const passwordTarget = (e: ChangeEvent<HTMLInputElement>) => {
         setPassword(e.currentTarget.value)
-        if (validateEmail(email) && (password.length >= 7)) {
-            setDisabledBtn(false)
-        }
     }
-    console.log(password.length)
-
-    const validateEmail = (email: string) => {
-        const regEx = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-        return regEx.test(String(email).toLowerCase());
-    }
-
 
     const loginHandler = () => {
         dispatch(loginTC(email, password, checked))
@@ -101,7 +93,7 @@ export const Login = () => {
                 <SuperButton
                     title="Login"
                     onClickHandler={loginHandler}
-                    disabledBtn={disabledBtn}
+                    disabledBtn={validateEmail(email) && (password.length < 8)}
                 />
             </form>
         </div>
