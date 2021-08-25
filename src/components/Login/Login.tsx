@@ -1,13 +1,13 @@
 import styles from './Login.module.css'
 import stylesContainer from '../common/styles/Container.module.css'
-import {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import eye from "../common/icons/eye.png";
 import closedEye from "../common/icons/closedEye.png";
 import {SuperButton} from '../common/c2-SuperButton/SuperButton';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../redux/store";
 import {loginTC} from "../../redux/reducers/reducerLogin";
-import {Redirect} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 import {Preloader} from "../common/preloader/Preloader";
 import {validateEmail} from "../common/validation/emailValidation";
 
@@ -92,7 +92,10 @@ export const Login = () => {
                     {(password) && (password.length > 7) ?
                         <div className={styles.correctMessage}>correct
                             password</div> : <></>}
-
+                </div>
+                <div className={styles.restorePasswordBlock}>
+                    <NavLink to={'/registration'}>
+                        forgot password</NavLink>
                 </div>
                 <div className={styles.rememberMe}>
                     <input onClick={() => setChecked(!checked)}
@@ -104,6 +107,11 @@ export const Login = () => {
                     disabledBtn={disabledBtn}
                     title="Login"
                     onClickHandler={loginHandler}/>
+                <p>Don't have an account?</p>
+                <div className={styles.loginBlock}>
+                    <NavLink to={'/registration'}>
+                        Sign Up</NavLink>
+                </div>
             </form>
         </div>
     )

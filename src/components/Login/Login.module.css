@@ -32,3 +32,21 @@
     color: green;
     font-size: 0.8rem;
 }
+
+p {
+    opacity: 0.7;
+}
+
+.loginBlock a {
+    font-family: Monaco, sans-serif;
+    text-decoration: none;
+    color: #dc653a;
+    font-weight: 800;
+}
+
+.restorePasswordBlock a{
+    text-decoration: none;
+    color: #dc653a;
+    font-size: 0.8rem;
+}
+
