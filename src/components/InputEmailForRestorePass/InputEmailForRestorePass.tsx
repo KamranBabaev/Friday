@@ -7,6 +7,7 @@ import {AppRootStateType} from "../../redux/store";
 import React, {ChangeEvent, useState} from "react";
 import {sendEmailForUpdatePasswordTC} from "../../redux/reducers/reducerRestorePassword";
 import {Preloader} from "../common/preloader/Preloader";
+import {validateEmail} from "../common/validation/emailValidation";
 
 
 export const InputEmailForRestorePass = () => {
@@ -15,6 +16,7 @@ export const InputEmailForRestorePass = () => {
   const sendEmail = useSelector<AppRootStateType, boolean>(state => state.restore.sendEmail)
   const [email, setEmail] = useState('')
   const [initialized, setInitialized] = useState(false)
+  const [disabledBtn, setDisabledBtn] = useState(true)
 
   const from = "test-front-admin <ai73a@yandex.by>"
   const message = `<div style="background-color: lime; padding: 15px">
@@ -22,6 +24,11 @@ export const InputEmailForRestorePass = () => {
                      </div>`
 
   const emailTarget = (e: ChangeEvent<HTMLInputElement>) => {
+    if(validateEmail(e.currentTarget.value)){
+      setDisabledBtn(false)
+    } else {
+      setDisabledBtn(true)
+    }
     setEmail(e.currentTarget.value)
   }
 
@@ -34,6 +41,8 @@ export const InputEmailForRestorePass = () => {
   if (sendEmail) {
     return <Redirect to={"/checkemail"}/>
   }
+
+
 
   return (
       <div className={stylesContainer.container}>
@@ -50,12 +59,18 @@ export const InputEmailForRestorePass = () => {
               <input onChange={emailTarget} value={email} type="text"
                      placeholder="example@ddd.com"/>
             </div>
+            {(email && (!validateEmail(email))) ?
+                <div className={styles.errorMessage}>incorrect
+                  email!!!</div> : <></>}
+            {(email && (validateEmail(email))) ?
+                <div className={styles.correctMessage}>correct
+                  email</div> : <></>}
           </div>
           <div className={styles.restoreBlock}>
             <p>Enter your email address and we will send you further
               instruction...</p>
             <SuperButton onClickHandler={sendInstructionHandler}
-                         disabledBtn={false}
+                         disabledBtn={disabledBtn}
                          title="Send Instructions"
             />
             <p>Did you remember your password?</p>
