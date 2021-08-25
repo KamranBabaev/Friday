@@ -94,7 +94,7 @@ export const Login = () => {
                             password</div> : <></>}
                 </div>
                 <div className={styles.restorePasswordBlock}>
-                    <NavLink to={'/registration'}>
+                    <NavLink to={'/inputemail'}>
                         forgot password</NavLink>
                 </div>
                 <div className={styles.rememberMe}>

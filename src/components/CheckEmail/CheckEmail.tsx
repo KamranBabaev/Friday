@@ -11,8 +11,7 @@ export const CheckEmail = () => {
           <img src={checkEmail} width={170} alt=''/>
           <h2>Check email</h2>
         </div>
-        <h4 className={styles.checkEmailTitle}>We’ve sent an Email with
-          instructions to example@mail.com</h4>
+        <h4 className={styles.checkEmailTitle}>We’ve sent an instructions to your Email, please follow it to continue.</h4>
       </div>
   )
 }
