@@ -3,7 +3,7 @@ import styles from './SuperButton.module.css'
 type SuperButtonPropsType = {
   title: string
   onClickHandler?: () => void
-  disabledBtn: boolean
+  disabledBtn?: boolean
 }
 
 

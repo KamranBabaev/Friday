@@ -28,15 +28,12 @@ export const Login = () => {
     }
 
     const emailTarget = (e: ChangeEvent<HTMLInputElement>) => {
+        (validateEmail(e.currentTarget.value) && (password.length > 7)) ? setDisabledBtn(false) : setDisabledBtn(true)
         setEmail(e.currentTarget.value)
     }
 
     const passwordTarget = (e: ChangeEvent<HTMLInputElement>) => {
-        if (validateEmail(email) && (e.currentTarget.value.length > 7)) {
-            setDisabledBtn(false)
-        } else {
-            setDisabledBtn(true)
-        }
+        (validateEmail(email) && (e.currentTarget.value.length > 7)) ? setDisabledBtn(false) : setDisabledBtn(true)
         setPassword(e.currentTarget.value)
     }
 
@@ -51,7 +48,6 @@ export const Login = () => {
     if (authMe) {
         return <Redirect to={'/'}/>
     }
-
 
     return (
         <div className={stylesContainer.container}>

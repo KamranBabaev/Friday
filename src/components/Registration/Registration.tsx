@@ -23,27 +23,25 @@ export const Registration = () => {
 
 
     const emailTarget = (e: ChangeEvent<HTMLInputElement>) => {
+        (validateEmail(e.currentTarget.value) && (password.length > 7) && (passwordConfirm === password))
+            ? setDisabledBtn(false)
+            : setDisabledBtn(true)
+
         setEmail(e.currentTarget.value)
     }
 
     const passwordTarget = (e: ChangeEvent<HTMLInputElement>) => {
-        if (validateEmail(email)
-            && (e.currentTarget.value.length > 7)
-            && (password === e.currentTarget.value)) {
-            setDisabledBtn(false)
-        } else {
-            setDisabledBtn(true)
-        }
+        (validateEmail(email) && (e.currentTarget.value.length > 7) && (passwordConfirm === e.currentTarget.value))
+            ? setDisabledBtn(false)
+            : setDisabledBtn(true)
+
         setPassword(e.currentTarget.value)
     }
     const passwordConfirmTarget = (e: ChangeEvent<HTMLInputElement>) => {
-        if (validateEmail(email)
-            && (e.currentTarget.value.length > 7)
-            && (password === e.currentTarget.value)) {
-            setDisabledBtn(false)
-        } else {
-            setDisabledBtn(true)
-        }
+        (validateEmail(email) && (e.currentTarget.value.length > 7) && (password === e.currentTarget.value))
+            ? setDisabledBtn(false)
+            : setDisabledBtn(true)
+
         setPasswordConfirm(e.currentTarget.value)
     }
 
@@ -63,6 +61,14 @@ export const Registration = () => {
         }
 
     }
+
+    const clearAllInputs = () => {
+        setEmail("")
+        setPassword("")
+        setPasswordConfirm("")
+    }
+
+
     if (authoriseMe) {
         return <Redirect to={'/profile'}/>
     }
@@ -82,7 +88,8 @@ export const Registration = () => {
                             onChange={emailTarget}
                             value={email}
                             type="text"
-                            placeholder="example@ddd.com"/>
+                            placeholder="example@ddd.com"
+                            autoFocus/>
                     </div>
                     {(email && (!validateEmail(email))) ?
                         <div className={styles.errorMessage}>incorrect
@@ -128,7 +135,7 @@ export const Registration = () => {
                 </div>
 
                 <div className={styles.buttons}>
-                    <SuperButton disabledBtn={disabledBtn} title="Cancel"/>
+                    <SuperButton onClickHandler={clearAllInputs} title="Cancel"/>
                     <SuperButton
                         onClickHandler={registerHandler}
                         disabledBtn={disabledBtn} title="Register"/>
