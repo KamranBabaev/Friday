@@ -4,3 +4,13 @@
     justify-content: space-evenly;
     width: 100%;
 }
+
+.errorMessage {
+    color: red;
+    font-size: 0.8rem;
+}
+
+.correctMessage {
+    color: green;
+    font-size: 0.8rem;
+}

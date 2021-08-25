@@ -42,7 +42,6 @@ export const RestorePassword = () => {
 
   return (
       <div className={stylesContainer.container}>
-
         <div className={stylesContainer.titleApp}>
           <h1>Brain storm</h1>
           <h3>Create new password</h3>
