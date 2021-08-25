@@ -1,7 +1,8 @@
 import {LoginAPI} from "../../API/loginAPI";
+import {setInitializedAC} from "./reducerApp";
 
 const initState = {
-  authMe: false
+  authMe: false,
 }
 
 export const reducerLogin = (state: any = initState, action: actionType) => {
@@ -19,10 +20,11 @@ export const loginAC = (authMe: boolean) => ({
 } as const)
 
 export const loginTC = (email: string, password: string, checked: boolean) => (dispatch: any) => {
-  const response = LoginAPI.authMe(email, password, checked)
-      .then(() => dispatch(loginAC(true)))
-      .catch(() => dispatch(loginAC(false)))
-
+  dispatch(setInitializedAC())
+  LoginAPI.authMe(email, password, checked)
+      .then(() => {
+        dispatch(loginAC(true))
+      })
 }
 
 // types

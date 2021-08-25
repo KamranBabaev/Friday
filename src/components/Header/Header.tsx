@@ -7,10 +7,10 @@ export const Header = () => {
       <div className={styles.header}>
         <div className={styles.navHeader}>
           <div>
-            <NavLink to={'/login'}>Login</NavLink>
+            <NavLink to={'/'}>Profile</NavLink>
           </div>
           <div>
-            <NavLink to={'/profile'}>Profile</NavLink>
+            <NavLink to={'/login'}>Login</NavLink>
           </div>
           <div>
             <NavLink to={'/registration'}>Registration</NavLink>

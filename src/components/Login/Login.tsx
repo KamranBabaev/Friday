@@ -8,12 +8,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../redux/store";
 import {loginTC} from "../../redux/reducers/reducerLogin";
 import {Redirect} from "react-router-dom";
+import {Preloader} from "../common/preloader/Preloader";
 
 export const Login = () => {
 
   const dispatch = useDispatch()
   const authMe = useSelector<AppRootStateType, boolean>(state => state.login.authMe)
-
+  const [initialized, setInitialized] = useState(false)
   const [openPassword, setOpenPassword] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -32,14 +33,15 @@ export const Login = () => {
   }
 
   const loginHandler = () => {
-    dispatch(loginTC(email, password, checked))
+    setInitialized(true)
+    setTimeout(() => dispatch(loginTC(email, password, checked)), 1000)
     setEmail('')
     setPassword('')
     setChecked(false)
   }
 
   if (authMe) {
-    return <Redirect to={'/profile'}/>
+    return <Redirect to={'/'}/>
   }
 
   return (
@@ -49,7 +51,7 @@ export const Login = () => {
           <h1>Brain storm</h1>
           <h2>Sign in</h2>
         </div>
-
+        {initialized && <Preloader/>}
         <form className={stylesContainer.form}>
           <div className={stylesContainer.item}>
             <p>Email:</p>
@@ -77,7 +79,7 @@ export const Login = () => {
                    type="checkbox"/>
             <span>remember me</span>
           </div>
-          <SuperButton disabledBtn={false}
+          <SuperButton disabledBtn={password.length < 8}
                        title="Login"
                        onClickHandler={loginHandler}/>
         </form>

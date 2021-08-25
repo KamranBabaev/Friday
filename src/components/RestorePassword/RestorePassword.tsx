@@ -8,12 +8,13 @@ import {restorePasswordTC} from "../../redux/reducers/reducerRestorePassword";
 import eye from "../common/icons/eye.png";
 import closedEye from "../common/icons/closedEye.png";
 import {Redirect, useParams} from "react-router-dom";
+import {Preloader} from "../common/preloader/Preloader";
 
 export const RestorePassword = () => {
   const [openPassword, setOpenPassword] = useState(false)
+  const [initialized, setInitialized] = useState(false)
   const [password, setPassword] = useState('')
   const updatePassword = useSelector<AppRootStateType, string>(state => state.restore.updatePassword)
-  const [disabledBtn, setDisabledBtn] = useState(true)
   const dispatch = useDispatch()
 
   let {token} = useParams<{ token: string }>();
@@ -24,17 +25,13 @@ export const RestorePassword = () => {
 
   const passwordTarget = (e: ChangeEvent<HTMLInputElement>) => {
     let pass = e.currentTarget.value
-    if (pass.length < 8) {
-      setDisabledBtn(true)
-    } else {
-      setDisabledBtn(false)
-    }
     setPassword(pass)
   }
 
 
   const restoreHandler = () => {
-    dispatch(restorePasswordTC(password, token))
+    setInitialized(true)
+    setTimeout(() => dispatch(restorePasswordTC(password, token)), 1000)
     setPassword('')
   }
 
@@ -50,6 +47,7 @@ export const RestorePassword = () => {
           <h1>Brain storm</h1>
           <h3>Create new password</h3>
         </div>
+        {initialized && <Preloader/>}
         <form className={stylesContainer.form}>
           <div className={stylesContainer.item}>
             <p>Password:</p>
@@ -67,7 +65,7 @@ export const RestorePassword = () => {
               email</p>
             <SuperButton title="Create new password"
                          onClickHandler={restoreHandler}
-                         disabledBtn={disabledBtn}
+                         disabledBtn={password.length < 8}
             />
             <div>
             </div>

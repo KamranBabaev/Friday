@@ -10,19 +10,19 @@ import {Header} from "./components/Header/Header";
 import {RestorePassword} from './components/RestorePassword/RestorePassword';
 import {InputEmailForRestorePass} from "./components/InputEmailForRestorePass/InputEmailForRestorePass";
 import {CheckEmail} from "./components/CheckEmail/CheckEmail";
+import {Preloader} from "./components/common/preloader/Preloader";
 
 
 function App() {
-
 
   return (
       <div className="App">
         <Header/>
         <Switch>
+          <Route exact path={'/'}
+                 render={() => <Profile/>}/>
           <Route path={'/login'}
                  render={() => <Login/>}/>
-          <Route path={'/profile'}
-                 render={() => <Profile/>}/>
           <Route path={'/registration'}
                  render={() => <Registration/>}/>
           <Route path={'/testPage'}

@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../redux/store";
 import React, {ChangeEvent, useState} from "react";
 import {sendEmailForUpdatePasswordTC} from "../../redux/reducers/reducerRestorePassword";
+import {Preloader} from "../common/preloader/Preloader";
 
 
 export const InputEmailForRestorePass = () => {
@@ -13,6 +14,7 @@ export const InputEmailForRestorePass = () => {
   const dispatch = useDispatch()
   const sendEmail = useSelector<AppRootStateType, boolean>(state => state.restore.sendEmail)
   const [email, setEmail] = useState('')
+  const [initialized, setInitialized] = useState(false)
 
   const from = "test-front-admin <ai73a@yandex.by>"
   const message = `<div style="background-color: lime; padding: 15px">
@@ -24,7 +26,8 @@ export const InputEmailForRestorePass = () => {
   }
 
   const sendInstructionHandler = () => {
-    dispatch(sendEmailForUpdatePasswordTC(email, from, message))
+    setInitialized(true)
+    setTimeout(() => dispatch(sendEmailForUpdatePasswordTC(email, from, message)), 1000)
     setEmail("")
   }
 
@@ -39,6 +42,7 @@ export const InputEmailForRestorePass = () => {
           <h1>Brain storm</h1>
           <h3>Forgot your password?</h3>
         </div>
+        {initialized && <Preloader/>}
         <form className={stylesContainer.form}>
           <div className={stylesContainer.item}>
             <p>Email:</p>
