@@ -9,6 +9,8 @@ import {AppRootStateType} from "../../redux/store";
 import {loginTC} from "../../redux/reducers/reducerLogin";
 import {Redirect} from "react-router-dom";
 import {Preloader} from "../common/preloader/Preloader";
+import {validateEmail} from "../common/validation/emailValidation";
+
 
 export const Login = () => {
 
@@ -79,7 +81,7 @@ export const Login = () => {
                    type="checkbox"/>
             <span>remember me</span>
           </div>
-          <SuperButton disabledBtn={password.length < 8}
+          <SuperButton disabledBtn={validateEmail(email) && (password.length < 8)}
                        title="Login"
                        onClickHandler={loginHandler}/>
         </form>
