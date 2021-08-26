@@ -62,6 +62,7 @@ export const Registration = () => {
         setEmail("")
         setPassword("")
         setPasswordConfirm("")
+        setDisabledBtn(true)
     }
 
 
