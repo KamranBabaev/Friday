@@ -9,7 +9,7 @@ export const passwordErrorMessage = (password: string) => {
 }
 
 export const confirmPasswordMessage = (password: string, passwordConfirm: string) => {
-    return ((password) || (passwordConfirm) && (password !== passwordConfirm) ?
+    return (((password) || (passwordConfirm)) && (password !== passwordConfirm) ?
         <div className={styles.errorMessage}>passwords do not match</div> : <></>)
 }
 export const validatePasswordStyles = (password: string) => {
@@ -17,5 +17,5 @@ export const validatePasswordStyles = (password: string) => {
 }
 
 export const confirmPasswordStyles = (password: string, passwordConfirm: string) => {
-    return (password) && (password === passwordConfirm) ? {borderBottom: '2px solid green'} : {}
+    return ((password) || (passwordConfirm)) && (password === passwordConfirm) ? {borderBottom: '2px solid green'} : {}
 }

@@ -11,7 +11,7 @@ import {Redirect} from 'react-router-dom';
 import {Preloader} from "../common/preloader/Preloader";
 import {emailErrorMessage, validateEmail, validateEmailStyles} from "../common/validation/emailValidation";
 import {
-    confirmPasswordMessage,
+    confirmPasswordMessage, confirmPasswordStyles,
     passwordErrorMessage,
     validatePasswordStyles
 } from "../common/validation/passwordValidation";
@@ -106,7 +106,7 @@ export const Registration = () => {
                 </div>
                 <div className={stylesContainer.item}>
                     <p>Confirm password:</p>
-                    <div
+                    <div style={confirmPasswordStyles(password,passwordConfirm)}
                         className={stylesContainer.inputBlock}>
                         <input
                             onChange={passwordConfirmTarget}
