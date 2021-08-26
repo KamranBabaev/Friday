@@ -7,7 +7,7 @@ import {AppRootStateType} from "../../redux/store";
 import React, {ChangeEvent, useState} from "react";
 import {sendEmailForUpdatePasswordTC} from "../../redux/reducers/reducerRestorePassword";
 import {Preloader} from "../common/preloader/Preloader";
-import {validateEmail} from "../common/validation/emailValidation";
+import {emailErrorMessage, validateEmail, validateEmailStyles} from "../common/validation/emailValidation";
 
 
 export const InputEmailForRestorePass = () => {
@@ -24,10 +24,7 @@ export const InputEmailForRestorePass = () => {
                      </div>`
 
     const emailTarget = (e: ChangeEvent<HTMLInputElement>) => {
-        (validateEmail(e.currentTarget.value))
-            ? setDisabledBtn(false)
-            : setDisabledBtn(true)
-
+        setDisabledBtn(!validateEmail(e.currentTarget.value))
         setEmail(e.currentTarget.value)
     }
 
@@ -41,10 +38,8 @@ export const InputEmailForRestorePass = () => {
         return <Redirect to={"/checkemail"}/>
     }
 
-
     return (
         <div className={stylesContainer.container}>
-
             <div className={stylesContainer.titleApp}>
                 <h1>Brain storm</h1>
                 <h3>Forgot your password?</h3>
@@ -53,16 +48,12 @@ export const InputEmailForRestorePass = () => {
             <form className={stylesContainer.form}>
                 <div className={stylesContainer.item}>
                     <p>Email:</p>
-                    <div className={stylesContainer.inputBlock}>
+                    <div style={validateEmailStyles(email)}
+                         className={stylesContainer.inputBlock}>
                         <input onChange={emailTarget} value={email} type="text"
                                placeholder="example@ddd.com"/>
                     </div>
-                    {(email && (!validateEmail(email))) ?
-                        <div className={styles.errorMessage}>incorrect
-                            email!!!</div> : <></>}
-                    {(email && (validateEmail(email))) ?
-                        <div className={styles.correctMessage}>correct
-                            email</div> : <></>}
+                    {emailErrorMessage(email)}
                 </div>
                 <div className={styles.restoreBlock}>
                     <p>Enter your email address and we will send you further

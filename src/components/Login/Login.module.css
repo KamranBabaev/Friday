@@ -23,16 +23,6 @@
     margin-right: 20px;
 }
 
-.errorMessage {
-    color: red;
-    font-size: 0.8rem;
-}
-
-.correctMessage {
-    color: green;
-    font-size: 0.8rem;
-}
-
 p {
     opacity: 0.7;
 }
