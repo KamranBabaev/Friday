@@ -35,13 +35,3 @@
     cursor: pointer;
     transition: 100ms linear;
 }
-
-.btnDisabled:hover {
-    background: #818080;
-    transition: 100ms linear;
-}
-
-.btnDisabled:active {
-    background: #413f3f;
-    transition: 100ms linear;
-}
