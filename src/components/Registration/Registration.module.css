@@ -3,14 +3,12 @@
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
+    margin-top: 35px;
 }
 
 .errorMessage {
-    color: red;
-    font-size: 0.8rem;
-}
-
-.correctMessage {
-    color: green;
-    font-size: 0.8rem;
+    position: absolute;
+    color: #ef1a1a;
+    font-size: 13px;
+    font-weight: 500;
 }

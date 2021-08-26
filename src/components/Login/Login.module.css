@@ -24,13 +24,10 @@
 }
 
 .errorMessage {
-    color: red;
-    font-size: 0.8rem;
-}
-
-.correctMessage {
-    color: green;
-    font-size: 0.8rem;
+    position: absolute;
+    color: #ef1a1a;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 p {
@@ -44,9 +41,16 @@ p {
     font-weight: 800;
 }
 
-.restorePasswordBlock a{
+.restorePasswordBlock {
+    padding: 25px 0 0  0;
+    display: flex;
+    justify-content: flex-end
+}
+
+.restorePasswordBlock a {
     text-decoration: none;
     color: #dc653a;
-    font-size: 0.8rem;
+    font-size: 14px;
+    font-weight: 600;
 }
 

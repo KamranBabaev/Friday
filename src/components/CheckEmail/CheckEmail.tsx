@@ -8,10 +8,16 @@ export const CheckEmail = () => {
       <div className={stylesContainer.container}>
         <div className={stylesContainer.titleApp}>
           <h1>Brain storm</h1>
-          <img src={checkEmail} width={170} alt=''/>
+          <img className={styles.imgEmail} src={checkEmail} width={170} alt=''/>
           <h2>Check email</h2>
         </div>
-        <h4 className={styles.checkEmailTitle}>We’ve sent an instructions to your Email, please follow it to continue.</h4>
+        <div className={styles.titleBlock}>
+          <h4 className={styles.checkEmailTitle}>
+            We’ve sent an instructions to your Email, please follow it to
+            continue...
+          </h4>
+          <span>&#128521;</span>
+        </div>
       </div>
   )
 }

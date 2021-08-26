@@ -21,14 +21,14 @@ export const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [checked, setChecked] = useState(false)
-  const [disabledBtn, setDisabledBtn] = useState(true)
+  const [disabledBtn, setDisabledBtn] = useState(false)
 
   const changeViewPassword = () => {
     setOpenPassword(!openPassword)
   }
 
   const emailTarget = (e: ChangeEvent<HTMLInputElement>) => {
-    (validateEmail(e.currentTarget.value) && (password.length > 7)) ? setDisabledBtn(false) : setDisabledBtn(true)
+    (validateEmail(e.currentTarget.value) && (password.length === 0 || password.length > 7)) ? setDisabledBtn(false) : setDisabledBtn(true)
     setEmail(e.currentTarget.value)
   }
 
@@ -55,7 +55,6 @@ export const Login = () => {
           <h1>Brain storm</h1>
           <h2>Sign in</h2>
         </div>
-        <Preloader/>
         {initialized && <Preloader/>}
         <form className={stylesContainer.form}>
           <div className={stylesContainer.item}>
@@ -66,12 +65,12 @@ export const Login = () => {
                      type="text"
                      placeholder="example@ddd.com"/>
             </div>
-            {(email && (!validateEmail(email))) ?
-                <div className={styles.errorMessage}>incorrect
-                  email!!!</div> : <></>}
-            {(email && (validateEmail(email))) ?
-                <div className={styles.correctMessage}>correct
-                  email</div> : <></>}
+            {
+              email && !validateEmail(email)
+                  ? <div className={styles.errorMessage}>incorrect
+                    email...</div>
+                  : ''
+            }
           </div>
           <div className={stylesContainer.item}>
             <p>Password:</p>
@@ -84,12 +83,13 @@ export const Login = () => {
               <img onClick={changeViewPassword} alt=''
                    src={openPassword ? eye : closedEye}/>
             </div>
-            {(password) && (password.length < 8) ?
-                <div className={styles.errorMessage}>password should be more
-                  than 7 symbols!!!</div> : <></>}
-            {(password) && (password.length > 7) ?
-                <div className={styles.correctMessage}>correct
-                  password</div> : <></>}
+            {
+              password && password.length < 8
+                  ? <div className={styles.errorMessage}>
+                    password should be more than 7 symbols...
+                  </div>
+                  : ''
+            }
             <div className={styles.restorePasswordBlock}>
               <NavLink to={'/inputemail'}>
                 forgot password?
