@@ -17,5 +17,7 @@ export const validatePasswordStyles = (password: string) => {
 }
 
 export const confirmPasswordStyles = (password: string, passwordConfirm: string) => {
-    return ((password) || (passwordConfirm)) && (password === passwordConfirm) ? {borderBottom: '2px solid green'} : {}
+    return (((password) || (passwordConfirm))
+    && (password === passwordConfirm)
+    && (password.length > 7) ? {borderBottom: '2px solid green'} : {})
 }
