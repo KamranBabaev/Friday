@@ -1,27 +1,27 @@
 import {RegistrationAPI} from '../../API/loginAPI';
 
 const initState = {
-    authoriseMe:false
+  authoriseMe: false
 }
 
 export const reducerRegistration = (state: any = initState, action: actionType) => {
-    switch (action.type) {
-        case 'REGISTRATION_ME':
-            return {...state, authoriseMe: action.authoriseMe}
-        default:
-            return state
-    }
+  switch (action.type) {
+    case 'REGISTRATION_ME':
+      return {...state, authoriseMe: action.authoriseMe}
+    default:
+      return state
+  }
 }
 
 export const registrationAC = (authoriseMe: boolean) => ({
-    type: 'REGISTRATION_ME',
-    authoriseMe
-} as const )
+  type: 'REGISTRATION_ME',
+  authoriseMe
+} as const)
 
 export const registrationTC = (email: string, password: string,) => (dispatch: any) => {
-    const promise = RegistrationAPI.regMe(email, password)
-        .then(()=>dispatch(registrationAC(true)))
-        .catch(()=>dispatch(registrationAC(false)))
+  RegistrationAPI.regMe(email, password)
+      .then(() => dispatch(registrationAC(true)))
+      .catch(() => dispatch(registrationAC(false)))
 
 }
 

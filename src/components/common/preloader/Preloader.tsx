@@ -13,7 +13,7 @@ export function Preloader() {
                      values="1;.5;1" calcMode="linear"
                      repeatCount="indefinite"/>
           </circle>
-          <circle cx="60" cy="15" r="9" fill-opacity="0.3">
+          <circle cx="60" cy="15" r="9">
             <animate attributeName="r" from="9" to="9"
                      begin="0s" dur="0.8s"
                      values="9;15;9" calcMode="linear"

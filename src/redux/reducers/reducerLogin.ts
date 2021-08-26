@@ -25,16 +25,16 @@ export const loginTC = (email: string, password: string, checked: boolean) => (d
       .then(() => {
         dispatch(loginAC(true))
       })
-    const response = LoginAPI.authMe(email, password, checked)
-        .then(() => dispatch(loginAC(true)))
-        .catch(() => dispatch(loginAC(false)))
+  LoginAPI.authMe(email, password, checked)
+      .then(() => dispatch(loginAC(true)))
+      .catch(() => dispatch(loginAC(false)))
 }
 
 
 export const Logout = () => (dispatch: any) => {
-    const response =  LoginAPI.logout()
-        .then(() => dispatch(loginAC(false)))
-        .catch(() => dispatch(loginAC(true)))
+  LoginAPI.logout()
+      .then(() => dispatch(loginAC(false)))
+      .catch(() => dispatch(loginAC(true)))
 }
 
 // types

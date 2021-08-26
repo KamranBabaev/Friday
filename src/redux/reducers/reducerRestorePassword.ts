@@ -30,14 +30,14 @@ export const sendEmailForUpdatePasswordAC = (sendEmail: boolean) => ({
 
 export const sendEmailForUpdatePasswordTC = (email: string, from: string, message: string) => async (dispatch: any) => {
 
-  const response = await RestorePasswordAPI.sendEmailForUpdatePassword(email, from, message)
+  await RestorePasswordAPI.sendEmailForUpdatePassword(email, from, message)
   dispatch(sendEmailForUpdatePasswordAC(true))
 }
 
 
 export const restorePasswordTC = (password: string, token: string) => (dispatch: any) => {
   debugger
-  const response = RestorePasswordAPI.restorePassword(password, token)
+  RestorePasswordAPI.restorePassword(password, token)
       .then(() => dispatch(restorePasswordAC(true)))
       .catch(() => dispatch(restorePasswordAC(false)))
 
