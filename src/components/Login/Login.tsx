@@ -55,6 +55,7 @@ export const Login = () => {
           <h1>Brain storm</h1>
           <h2>Sign in</h2>
         </div>
+        <Preloader/>
         {initialized && <Preloader/>}
         <form className={stylesContainer.form}>
           <div className={stylesContainer.item}>
@@ -74,7 +75,8 @@ export const Login = () => {
           </div>
           <div className={stylesContainer.item}>
             <p>Password:</p>
-            <div className={stylesContainer.inputBlock}>
+            <div style={{borderBottom: '2px solid green'}}
+                 className={stylesContainer.inputBlock}>
               <input onChange={passwordTarget}
                      value={password}
                      type={openPassword ? "text" : "password"}
