@@ -15,7 +15,7 @@ export const Profile = () => {
     }
 
     if (!authMe) {
-        return <Redirect to={'/login'}/>
+        return <Redirect to={'/'}/>
     }
 
     return (
