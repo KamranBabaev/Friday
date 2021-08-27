@@ -9,12 +9,17 @@ import eye from "../common/icons/eye.png";
 import closedEye from "../common/icons/closedEye.png";
 import {Redirect, useParams} from "react-router-dom";
 import {Preloader} from "../common/preloader/Preloader";
+import {
+  passwordErrorMessage,
+  validatePasswordStyles
+} from "../common/validation/passwordValidation";
 
 export const RestorePassword = () => {
   const [openPassword, setOpenPassword] = useState(false)
   const [initialized, setInitialized] = useState(false)
   const [password, setPassword] = useState('')
   const updatePassword = useSelector<AppRootStateType, string>(state => state.restore.updatePassword)
+  const entityStatus = useSelector<AppRootStateType, boolean>(state => state.restore.entityStatus)
   const dispatch = useDispatch()
 
   let {token} = useParams<{ token: string }>();
@@ -24,14 +29,12 @@ export const RestorePassword = () => {
   }
 
   const passwordTarget = (e: ChangeEvent<HTMLInputElement>) => {
-    let pass = e.currentTarget.value
-    setPassword(pass)
+    setPassword(e.currentTarget.value)
   }
-
 
   const restoreHandler = () => {
     setInitialized(true)
-    setTimeout(() => dispatch(restorePasswordTC(password, token)), 1000)
+    dispatch(restorePasswordTC(password, token))
     setPassword('')
   }
 
@@ -50,7 +53,8 @@ export const RestorePassword = () => {
         <form className={stylesContainer.form}>
           <div className={stylesContainer.item}>
             <p>Password:</p>
-            <div className={stylesContainer.inputBlock}>
+            <div style={validatePasswordStyles(password)}
+                 className={stylesContainer.inputBlock}>
               <input onChange={passwordTarget}
                      value={password}
                      type={openPassword ? "text" : "password"}
@@ -58,13 +62,15 @@ export const RestorePassword = () => {
               <img onClick={changeViewPassword} alt=''
                    src={openPassword ? eye : closedEye}/>
             </div>
+            {passwordErrorMessage(password)}
           </div>
           <div className={styles.restoreBlock}>
             <p>Create new password and we will send your further instruction to
               email</p>
-            <SuperButton title="Create new password"
+            <SuperButton entityStatus={entityStatus}
+                         title="Create new password"
                          onClickHandler={restoreHandler}
-                         disabledBtn={password.length < 8}
+                         disabledBtn={password.length > 0 && password.length < 8}
             />
             <div>
             </div>

@@ -4,13 +4,14 @@ type SuperButtonPropsType = {
   title: string
   onClickHandler?: () => void
   disabledBtn?: boolean
+  entityStatus?: boolean
 }
 
 
 export function SuperButton(props: SuperButtonPropsType) {
   return (
       <div>
-        <button disabled={props.disabledBtn}
+        <button disabled={props.entityStatus}
                 onClick={props.onClickHandler}
                 className={props.disabledBtn
                     ? styles.btnDisabled
