@@ -22,7 +22,7 @@ export const Profile = () => {
         <div className={styles.profile}>
             <div className={styles.box}>
                 <div className={styles.prof}>
-                    <img src="//placehold.it/100x100" alt="face"/>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoPhc-UqiuZfT4V37eO5MVVvSI3D_tUG5dIQ&usqp=CAU" alt="face"/>
                     <h3>Petr Ivanov</h3>
                     <p>Front-end developer</p>
                     <button onClick={logoutMe}>Logout</button>
