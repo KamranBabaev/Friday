@@ -1,15 +1,23 @@
 import styles from './profile.module.css'
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppRootStateType} from '../../redux/store';
 import {Logout} from '../../redux/reducers/reducerLogin';
 import {Redirect} from 'react-router-dom';
+import {useState} from "react";
 
 export const Profile = () => {
 
+  const authMe = useSelector<AppRootStateType, boolean>(state => state.login.authMe)
+  const [auth, setAuth] = useState(authMe)
 
   const dispatch = useDispatch()
 
   function logoutMe() {
     dispatch(Logout())
+    setAuth(false)
+  }
+
+  if (!auth) {
     return <Redirect to={'/'}/>
   }
 
