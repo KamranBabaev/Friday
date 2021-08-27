@@ -9,7 +9,8 @@ import {AppRootStateType} from "../../redux/store";
 import {loginTC} from "../../redux/reducers/reducerLogin";
 import {NavLink, Redirect} from "react-router-dom";
 import {Preloader} from "../common/preloader/Preloader";
-import {validateEmail} from "../common/validation/emailValidation";
+import {emailErrorMessage, validateEmail, validateEmailStyles} from "../common/validation/emailValidation";
+import {passwordErrorMessage, validatePasswordStyles} from "../common/validation/passwordValidation";
 
 
 export const Login = () => {
@@ -23,95 +24,86 @@ export const Login = () => {
   const [checked, setChecked] = useState(false)
   const [disabledBtn, setDisabledBtn] = useState(false)
 
-  const changeViewPassword = () => {
-    setOpenPassword(!openPassword)
-  }
+    const changeViewPassword = () => {
+        setOpenPassword(!openPassword)
+    }
 
-  const emailTarget = (e: ChangeEvent<HTMLInputElement>) => {
-    (validateEmail(e.currentTarget.value) && (password.length === 0 || password.length > 7)) ? setDisabledBtn(false) : setDisabledBtn(true)
-    setEmail(e.currentTarget.value)
-  }
+    const emailTarget = (e: ChangeEvent<HTMLInputElement>) => {
+        setDisabledBtn(!(validateEmail(e.currentTarget.value) && (password.length > 7)))
+        setEmail(e.currentTarget.value)
+    }
 
-  const passwordTarget = (e: ChangeEvent<HTMLInputElement>) => {
-    (validateEmail(email) && (e.currentTarget.value.length > 7)) ? setDisabledBtn(false) : setDisabledBtn(true)
-    setPassword(e.currentTarget.value)
-  }
+    const passwordTarget = (e: ChangeEvent<HTMLInputElement>) => {
+        setDisabledBtn(!(validateEmail(email) && (e.currentTarget.value.length > 7)))
+        setPassword(e.currentTarget.value)
+    }
 
-  const loginHandler = () => {
-    setInitialized(true)
-    setTimeout(() => dispatch(loginTC(email, password, checked)), 1000)
-    setEmail('')
-    setPassword('')
-    setChecked(false)
-  }
+    const loginHandler = () => {
+        setInitialized(true)
+        setTimeout(() => dispatch(loginTC(email, password, checked)), 1000)
+        setEmail('')
+        setPassword('')
+        setChecked(false)
+    }
 
-  if (authMe) {
-    return <Redirect to={'/'}/>
-  }
+    if (authMe) {
+        return <Redirect to={'/'}/>
+    }
 
-  return (
-      <div className={stylesContainer.container}>
-        <div className={stylesContainer.titleApp}>
-          <h1>Brain storm</h1>
-          <h2>Sign in</h2>
+    return (
+        <div className={stylesContainer.container}>
+            <div className={stylesContainer.titleApp}>
+                <h1>Brain storm</h1>
+                <h2>Sign in</h2>
+            </div>
+            <Preloader/>
+            {initialized && <Preloader/>}
+            <form className={stylesContainer.form}>
+                <div className={stylesContainer.item}>
+                    <p>Email:</p>
+                    <div style={validateEmailStyles(email)}
+                         className={stylesContainer.inputBlock}>
+                        <input onChange={emailTarget}
+                               value={email}
+                               type="text"
+                               placeholder="example@ddd.com"/>
+                    </div>
+                    {emailErrorMessage(email)}
+                </div>
+                <div className={stylesContainer.item}>
+                    <p>Password:</p>
+                    <div style={validatePasswordStyles(password)}
+                         className={stylesContainer.inputBlock}>
+                        <input onChange={passwordTarget}
+                               value={password}
+                               type={openPassword ? "text" : "password"}
+                               placeholder="****"/>
+                        <img onClick={changeViewPassword} alt=''
+                             src={openPassword ? eye : closedEye}/>
+                    </div>
+                    {passwordErrorMessage(password)}
+                    <div className={styles.restorePasswordBlock}>
+                        <NavLink to={'/inputemail'}>
+                            forgot password?
+                        </NavLink>
+                    </div>
+                </div>
+                <div className={styles.rememberMe}>
+                    <input onClick={() => setChecked(!checked)}
+                           className={styles.checkbox}
+                           type="checkbox"/>
+                    <span>remember me</span>
+                </div>
+                <SuperButton
+                    disabledBtn={disabledBtn}
+                    title="Login"
+                    onClickHandler={loginHandler}/>
+                <p>Don't have an account?</p>
+                <div className={styles.loginBlock}>
+                    <NavLink to={'/registration'}>
+                        Sign Up</NavLink>
+                </div>
+            </form>
         </div>
-        {initialized && <Preloader/>}
-        <form className={stylesContainer.form}>
-          <div className={stylesContainer.item}>
-            <p>Email:</p>
-            <div className={stylesContainer.inputBlock}>
-              <input onChange={emailTarget}
-                     value={email}
-                     type="text"
-                     placeholder="example@ddd.com"/>
-            </div>
-            {
-              email && !validateEmail(email)
-                  ? <div className={styles.errorMessage}>incorrect
-                    email...</div>
-                  : ''
-            }
-          </div>
-          <div className={stylesContainer.item}>
-            <p>Password:</p>
-            <div style={{borderBottom: '2px solid green'}}
-                 className={stylesContainer.inputBlock}>
-              <input onChange={passwordTarget}
-                     value={password}
-                     type={openPassword ? "text" : "password"}
-                     placeholder="****"/>
-              <img onClick={changeViewPassword} alt=''
-                   src={openPassword ? eye : closedEye}/>
-            </div>
-            {
-              password && password.length < 8
-                  ? <div className={styles.errorMessage}>
-                    password should be more than 7 symbols...
-                  </div>
-                  : ''
-            }
-            <div className={styles.restorePasswordBlock}>
-              <NavLink to={'/inputemail'}>
-                forgot password?
-              </NavLink>
-            </div>
-          </div>
-          <div className={styles.rememberMe}>
-            <input onClick={() => setChecked(!checked)}
-                   className={styles.checkbox}
-                   type="checkbox"/>
-            <span>remember me</span>
-          </div>
-          <SuperButton
-              disabledBtn={disabledBtn}
-              title="Login"
-              onClickHandler={loginHandler}/>
-          <p>Don't have an account?</p>
-          <div className={styles.loginBlock}>
-            <NavLink to={'/registration'}>
-              Sign Up</NavLink>
-          </div>
-        </form>
-      </div>
-  )
+    )
 }

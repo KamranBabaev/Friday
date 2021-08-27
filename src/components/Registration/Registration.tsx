@@ -9,7 +9,12 @@ import {AppRootStateType} from '../../redux/store';
 import {registrationTC} from '../../redux/reducers/reducerRegistration';
 import {Redirect} from 'react-router-dom';
 import {Preloader} from "../common/preloader/Preloader";
-import {validateEmail} from "../common/validation/emailValidation";
+import {emailErrorMessage, validateEmail, validateEmailStyles} from "../common/validation/emailValidation";
+import {
+    confirmPasswordMessage, confirmPasswordStyles,
+    passwordErrorMessage,
+    validatePasswordStyles
+} from "../common/validation/passwordValidation";
 
 export const Registration = () => {
   const dispatch = useDispatch()
@@ -22,28 +27,19 @@ export const Registration = () => {
   const [disabledBtn, setDisabledBtn] = useState(false)
 
 
-  const emailTarget = (e: ChangeEvent<HTMLInputElement>) => {
-    (validateEmail(e.currentTarget.value) && (password.length > 7) && (passwordConfirm === password))
-        ? setDisabledBtn(false)
-        : setDisabledBtn(true)
+    const emailTarget = (e: ChangeEvent<HTMLInputElement>) => {
+        setDisabledBtn(!(validateEmail(e.currentTarget.value) && (password.length > 7) && (passwordConfirm === password)))
+        setEmail(e.currentTarget.value)
+    }
 
-    setEmail(e.currentTarget.value)
-  }
-
-  const passwordTarget = (e: ChangeEvent<HTMLInputElement>) => {
-    (validateEmail(email) && (e.currentTarget.value.length > 7) && (passwordConfirm === e.currentTarget.value))
-        ? setDisabledBtn(false)
-        : setDisabledBtn(true)
-
-    setPassword(e.currentTarget.value)
-  }
-  const passwordConfirmTarget = (e: ChangeEvent<HTMLInputElement>) => {
-    (validateEmail(email) && (e.currentTarget.value.length > 7) && (password === e.currentTarget.value))
-        ? setDisabledBtn(false)
-        : setDisabledBtn(true)
-
-    setPasswordConfirm(e.currentTarget.value)
-  }
+    const passwordTarget = (e: ChangeEvent<HTMLInputElement>) => {
+        setDisabledBtn(!(validateEmail(email) && (e.currentTarget.value.length > 7) && (passwordConfirm === e.currentTarget.value)))
+        setPassword(e.currentTarget.value)
+    }
+    const passwordConfirmTarget = (e: ChangeEvent<HTMLInputElement>) => {
+        setDisabledBtn(!(validateEmail(email) && (e.currentTarget.value.length > 7) && (password === e.currentTarget.value)))
+        setPasswordConfirm(e.currentTarget.value)
+    }
 
   const changeViewPassword = () => {
     setOpenPassword(!openPassword)
@@ -61,86 +57,73 @@ export const Registration = () => {
     }
   }
 
-  const clearAllInputs = () => {
-    setEmail("")
-    setPassword("")
-    setPasswordConfirm("")
-  }
+    const clearAllInputs = () => {
+        setEmail("")
+        setPassword("")
+        setPasswordConfirm("")
+        setDisabledBtn(true)
+    }
 
 
-  if (authoriseMe) {
-    return <Redirect to={'/profile'}/>
-  }
-  return (
-      <div className={stylesContainer.container}>
-
-        <div className={stylesContainer.titleApp}>
-          <h1>Brain storm</h1>
-          <h2>Sign up</h2>
+    if (authoriseMe) {
+        return <Redirect to={'/profile'}/>
+    }
+    return (
+        <div className={stylesContainer.container}>
+            <div className={stylesContainer.titleApp}>
+                <h1>Brain storm</h1>
+                <h2>Sign up</h2>
+            </div>
+            {initialized && <Preloader/>}
+            <form className={stylesContainer.form}>
+                <div className={stylesContainer.item}>
+                    <p>Email:</p>
+                    <div style={validateEmailStyles(email)}
+                         className={stylesContainer.inputBlock}>
+                        <input
+                            onChange={emailTarget}
+                            value={email}
+                            type="text"
+                            placeholder="example@ddd.com"
+                            autoFocus/>
+                    </div>
+                    {emailErrorMessage(email)}
+                </div>
+                <div className={stylesContainer.item}>
+                    <p>Password:</p>
+                    <div style={validatePasswordStyles(password)}
+                         className={stylesContainer.inputBlock}>
+                        <input
+                            onChange={passwordTarget}
+                            value={password}
+                            type={openPassword ? 'text' : 'password'}
+                            placeholder="****"/>
+                        <img onClick={changeViewPassword} alt=""
+                             src={openPassword ? eye : closedEye}/>
+                    </div>
+                    {passwordErrorMessage(password)}
+                </div>
+                <div className={stylesContainer.item}>
+                    <p>Confirm password:</p>
+                    <div style={confirmPasswordStyles(password,passwordConfirm)}
+                        className={stylesContainer.inputBlock}>
+                        <input
+                            onChange={passwordConfirmTarget}
+                            value={passwordConfirm}
+                            type={openPassword ? 'text' : 'password'}
+                            placeholder="****"/>
+                        <img onClick={changeViewPassword} alt=""
+                             src={openPassword ? eye : closedEye}/>
+                    </div>
+                    {confirmPasswordMessage(password, passwordConfirm)}
+                </div>
+                <div className={styles.buttons}>
+                    <SuperButton onClickHandler={clearAllInputs} title="Cancel"/>
+                    <SuperButton
+                        onClickHandler={registerHandler}
+                        disabledBtn={disabledBtn} title="Register"/>
+                </div>
+            </form>
         </div>
-        {initialized && <Preloader/>}
-        <form className={stylesContainer.form}>
-          <div className={stylesContainer.item}>
-            <p>Email:</p>
-            <div className={stylesContainer.inputBlock}>
-              <input
-                  onChange={emailTarget}
-                  value={email}
-                  type="text"
-                  placeholder="example@ddd.com"
-                  autoFocus/>
-            </div>
-            {
-              email && !validateEmail(email)
-                  ? <div className={styles.errorMessage}>incorrect
-                    email!!!</div>
-                  : ''
-            }
-          </div>
-          <div className={stylesContainer.item}>
-            <p>Password:</p>
-            <div className={stylesContainer.inputBlock}>
-              <input
-                  onChange={passwordTarget}
-                  value={password}
-                  type={openPassword ? 'text' : 'password'}
-                  placeholder="****"/>
-              <img onClick={changeViewPassword} alt=""
-                   src={openPassword ? eye : closedEye}/>
-            </div>
-            {
-              password && password.length < 8
-                  ? <div className={styles.errorMessage}>
-                    password should be more than 7 symbols...</div>
-                  : ''
-            }
-          </div>
-          <div className={stylesContainer.item}>
-            <p>Confirm password:</p>
-            <div className={stylesContainer.inputBlock}>
-              <input
-                  onChange={passwordConfirmTarget}
-                  value={passwordConfirm}
-                  type={openPassword ? 'text' : 'password'}
-                  placeholder="****"/>
-              <img onClick={changeViewPassword} alt=""
-                   src={openPassword ? eye : closedEye}/>
-            </div>
-            {
-              password && passwordConfirm && password !== passwordConfirm
-                  ? <div className={styles.errorMessage}>passwords do not
-                    match...</div>
-                  : ''
-            }
-          </div>
-
-          <div className={styles.buttons}>
-            <SuperButton disabledBtn={password.length ===0} onClickHandler={clearAllInputs} title="Cancel"/>
-            <SuperButton
-                onClickHandler={registerHandler}
-                disabledBtn={disabledBtn} title="Register"/>
-          </div>
-        </form>
-      </div>
-  )
+    )
 }

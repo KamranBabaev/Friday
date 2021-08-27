@@ -7,7 +7,7 @@ import {AppRootStateType} from "../../redux/store";
 import React, {ChangeEvent, useState} from "react";
 import {sendEmailForUpdatePasswordTC} from "../../redux/reducers/reducerRestorePassword";
 import {Preloader} from "../common/preloader/Preloader";
-import {validateEmail} from "../common/validation/emailValidation";
+import {emailErrorMessage, validateEmail, validateEmailStyles} from "../common/validation/emailValidation";
 
 
 export const InputEmailForRestorePass = () => {
@@ -30,6 +30,10 @@ export const InputEmailForRestorePass = () => {
 
     setEmail(e.currentTarget.value)
   }
+    // const emailTarget = (e: ChangeEvent<HTMLInputElement>) => {
+    //     setDisabledBtn(!validateEmail(e.currentTarget.value))
+    //     setEmail(e.currentTarget.value)
+    // }
 
   const sendInstructionHandler = () => {
     setInitialized(true)
@@ -41,42 +45,37 @@ export const InputEmailForRestorePass = () => {
     return <Redirect to={"/checkemail"}/>
   }
 
-
-  return (
-      <div className={stylesContainer.container}>
-
-        <div className={stylesContainer.titleApp}>
-          <h1>Brain storm</h1>
-          <h2>Forgot your password?</h2>
+    return (
+        <div className={stylesContainer.container}>
+            <div className={stylesContainer.titleApp}>
+                <h1>Brain storm</h1>
+                <h3>Forgot your password?</h3>
+            </div>
+            {initialized && <Preloader/>}
+            <form className={stylesContainer.form}>
+                <div className={stylesContainer.item}>
+                    <p>Email:</p>
+                    <div style={validateEmailStyles(email)}
+                         className={stylesContainer.inputBlock}>
+                        <input onChange={emailTarget} value={email} type="text"
+                               placeholder="example@ddd.com"/>
+                    </div>
+                    {emailErrorMessage(email)}
+                </div>
+                <div className={styles.restoreBlock}>
+                    <p>Enter your email address and we will send you further
+                        instruction...</p>
+                    <SuperButton onClickHandler={sendInstructionHandler}
+                                 disabledBtn={disabledBtn}
+                                 title="Send Instructions"
+                    />
+                    <p>Did you remember your password?</p>
+                    <div>
+                        <NavLink className={styles.navLink} to={'/login'}>
+                            Try logging in</NavLink>
+                    </div>
+                </div>
+            </form>
         </div>
-        {initialized && <Preloader/>}
-        <form className={stylesContainer.form}>
-          <div className={stylesContainer.item}>
-            <p>Email:</p>
-            <div className={stylesContainer.inputBlock}>
-              <input onChange={emailTarget} value={email} type="text"
-                     placeholder="example@ddd.com"/>
-            </div>
-            {
-              email && !validateEmail(email)
-                  ? <div className={styles.errorMessage}>incorrect
-                    email...</div> : ''
-            }
-          </div>
-          <div className={styles.restoreBlock}>
-            <p>Enter your email address and we will send you further
-              instruction...</p>
-            <SuperButton onClickHandler={sendInstructionHandler}
-                         disabledBtn={disabledBtn}
-                         title="Send Instructions"
-            />
-            <p>Did you remember your password?</p>
-            <div>
-              <NavLink className={styles.navLink} to={'/login'}>
-                Try logging in</NavLink>
-            </div>
-          </div>
-        </form>
-      </div>
-  )
+    )
 }
