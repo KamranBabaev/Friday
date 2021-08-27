@@ -18,7 +18,7 @@ export const Profile = () => {
   }
 
   if (!auth) {
-    return <Redirect to={'/'}/>
+    return <Redirect to={'/login'}/>
   }
 
   return (
