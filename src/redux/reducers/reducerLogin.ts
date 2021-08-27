@@ -43,9 +43,9 @@ export const loginTC = (email: string, password: string, checked: boolean) => as
 export const Logout = () => async (dispatch: any) => {
   await LoginAPI.logout()
   try {
-    dispatch(loginAC(true))
-  } catch {
     dispatch(loginAC(false))
+  } catch {
+    dispatch(loginAC(true))
   }
 }
 
