@@ -19,7 +19,6 @@ import {
   validatePasswordStyles
 } from "../common/validation/passwordValidation";
 
-
 export const Login = () => {
 
   const dispatch = useDispatch()

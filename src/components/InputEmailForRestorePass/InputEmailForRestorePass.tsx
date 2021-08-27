@@ -25,7 +25,7 @@ export const InputEmailForRestorePass = () => {
 
   const from = "test-front-admin <ai73a@yandex.by>"
   const message = `<div style="background-color: lime; padding: 15px">
-                     password recovery link: <a href='http://localhost:3000/#/restorpassword/$token$'>link</a>
+                     password recovery link: <a href='https://kamranbabaev.github.io/#/restorpassword/$token$'>link</a>
                      </div>`
 
   const emailTarget = (e: ChangeEvent<HTMLInputElement>) => {
