@@ -10,7 +10,7 @@ import {Header} from "./components/Header/Header";
 import {RestorePassword} from './components/RestorePassword/RestorePassword';
 import {InputEmailForRestorePass} from "./components/InputEmailForRestorePass/InputEmailForRestorePass";
 import {CheckEmail} from "./components/CheckEmail/CheckEmail";
-import {Preloader} from "./components/common/preloader/Preloader";
+
 
 
 function App() {
@@ -19,28 +19,41 @@ function App() {
       <div className="App">
         <Header/>
         <Switch>
-          <Route exact path={'/'}
+          <Route exact path={routes.profile}
                  render={() => <Profile/>}/>
-          <Route path={'/login'}
+          <Route path={routes.login}
                  render={() => <Login/>}/>
-          <Route path={'/registration'}
+          <Route path={routes.registration}
                  render={() => <Registration/>}/>
-          <Route path={'/testPage'}
+          <Route path={routes.test}
                  render={() => <TestPage/>}/>
-          <Route path={'/checkemail'}
+          <Route path={routes.checkEmail}
                  render={() => <CheckEmail/>}/>
-          <Route path={'/inputpassword'}
+          <Route path={routes.inputPassword}
                  render={() => <InputPassword/>}/>
-          <Route path={'/inputemail'}
+          <Route path={routes.inputEmailForRestorePass}
                  render={() => <InputEmailForRestorePass/>}/>
-          <Route path={`/restorpassword/:token`}
+          <Route path={routes.restorePassword}
                  render={() => <RestorePassword/>}/>
-          <Route path={'*'}
+          <Route path={routes.error404}
                  render={() => <Error404/>}/>
         </Switch>
 
       </div>
   );
+}
+
+
+export const routes = {
+    profile: '/',
+    login: '/login',
+    registration: '/registration',
+    test: '/testpage',
+    checkEmail: '/checkemail',
+    inputPassword: '/inputpassword',
+    inputEmailForRestorePass:'/inputemail',
+    restorePassword: `/restorpassword/:token`,
+    error404: '*'
 }
 
 export default App;
