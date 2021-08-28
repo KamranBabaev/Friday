@@ -19,7 +19,6 @@ import {
   validatePasswordStyles
 } from "../common/validation/passwordValidation";
 
-
 export const Login = () => {
 
   const dispatch = useDispatch()
@@ -52,6 +51,7 @@ export const Login = () => {
     setEmail('')
     setPassword('')
     setChecked(false)
+    setInitialized(false)
   }
 
   if (authMe) {
