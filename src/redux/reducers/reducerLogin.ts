@@ -28,21 +28,20 @@ export const entityStatusAC = () => ({
 
 export const loginTC = (email: string, password: string, checked: boolean) => async (dispatch: any) => {
   dispatch(entityStatusAC())
-  dispatch(setInitializedAC())
-  await LoginAPI.authMe(email, password, checked)
-  dispatch(loginAC(true))
-  await LoginAPI.authMe(email, password, checked)
+  dispatch(setInitializedAC(true))
   try {
+    await LoginAPI.authMe(email, password, checked)
     dispatch(loginAC(true))
-  } catch {
-    dispatch(loginAC(false))
+  } catch (error) {
+    alert(error.response.data.error)
   }
+  dispatch(setInitializedAC(false))
 }
 
 
 export const Logout = () => async (dispatch: any) => {
-  await LoginAPI.logout()
   try {
+    await LoginAPI.logout()
     dispatch(loginAC(false))
   } catch {
     dispatch(loginAC(true))

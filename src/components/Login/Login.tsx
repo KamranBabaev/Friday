@@ -51,6 +51,7 @@ export const Login = () => {
     setEmail('')
     setPassword('')
     setChecked(false)
+    setInitialized(false)
   }
 
   if (authMe) {

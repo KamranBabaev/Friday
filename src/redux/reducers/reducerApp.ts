@@ -15,11 +15,14 @@ export const appReducer = (state: InitStateType = initState,
     case 'SET_INITIALIZED':
       return {
         ...state,
-        initialized: true,
+        initialized: action.initialized,
       }
     default:
       return state
   }
 }
 
-export const setInitializedAC = () => ({type: 'SET_INITIALIZED'} as const);
+export const setInitializedAC = (initialized: boolean) => ({
+  type: 'SET_INITIALIZED',
+  initialized
+} as const);
