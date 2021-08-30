@@ -7,9 +7,7 @@ const instance = axios.create({
 
 
 export const PackAPI = {
-
     async getPack(id:string){
-        debugger
         return await instance.get(`cards/card/${id}`)
     }
 }

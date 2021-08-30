@@ -10,7 +10,8 @@ import {Header} from './components/Header/Header';
 import {RestorePassword} from './components/StartComponents/RestorePassword/RestorePassword';
 import {InputEmailForRestorePass} from './components/StartComponents/InputEmailForRestorePass/InputEmailForRestorePass';
 import {CheckEmail} from './components/StartComponents/CheckEmail/CheckEmail';
-import {Packs} from './components/Packs/Packs';
+import {Cards} from './components/Packs/Cards';
+import {Packs} from './components/PacksComponents/Packs/Packs';
 
 function App() {
 
@@ -22,6 +23,8 @@ function App() {
                        render={() => <Profile/>}/>
                 <Route exact path={routes.packs}
                        render={() => <Packs/>}/>
+                <Route exact path={routes.cards}
+                       render={() => <Cards/>}/>
                 <Route path={routes.login}
                        render={() => <Login/>}/>
                 <Route path={routes.registration}
@@ -48,6 +51,7 @@ function App() {
 export const routes = {
     profile: '/',
     packs: '/packs',
+    cards: '/cards',
     login: '/login',
     registration: '/registration',
     test: '/testpage',

@@ -26,7 +26,6 @@ export const setCardsAC = (cards: CardsType[]) => ({
 
 export const fetchCardsTC = () => async (dispatch: any) => {
   try {
-    debugger
     const res = await CardsAPI.getPacks()
     dispatch(setCardsAC(res.data.cardPacks))
   } catch {

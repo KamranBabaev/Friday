@@ -4,7 +4,7 @@ import {PackAPI} from '../../API/PackAPI';
 const initState: InitialStateType = []
 
 
-export const packReducer = (state: InitialStateType = initState, action: ActionsType) => {
+export const reducerCards = (state: InitialStateType = initState, action: ActionsType) => {
     switch (action.type) {
         case 'SET_CARDS':
             return {...state}
