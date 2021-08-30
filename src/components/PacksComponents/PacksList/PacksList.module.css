@@ -1,0 +1,26 @@
+.mainBlock {
+    padding: 0 10px;
+}
+
+.headerPacksList {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ECECF9;
+}
+
+.name {
+    min-width: 200px;
+}
+
+.cards {
+    width: 30px;
+}
+
+.lastUpdate {
+    width: 180px;
+}
+
+.actions {
+    width: 200px;
+}

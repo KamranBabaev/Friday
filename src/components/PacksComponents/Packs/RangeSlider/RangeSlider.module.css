@@ -1,0 +1,16 @@
+.range {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.title {
+    margin: 10px 0;
+}
+
+.range strong {
+    font-size: 20px;
+    margin-left: 10px;
+}
+

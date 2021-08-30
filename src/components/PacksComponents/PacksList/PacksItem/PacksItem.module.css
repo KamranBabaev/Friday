@@ -1,0 +1,21 @@
+.packsItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.name {
+    min-width: 200px;
+}
+
+.cards {
+    width: 20px;
+}
+
+.lastUpdate {
+    width: 150px;
+}
+
+.actions {
+    width: 200px;
+}
