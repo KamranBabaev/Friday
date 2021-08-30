@@ -10,8 +10,8 @@ import {Header} from "./components/Header/Header";
 import {RestorePassword} from './components/StartComponents/RestorePassword/RestorePassword';
 import {InputEmailForRestorePass} from "./components/StartComponents/InputEmailForRestorePass/InputEmailForRestorePass";
 import {CheckEmail} from "./components/StartComponents/CheckEmail/CheckEmail";
-import {Preloader} from "./components/common/preloader/Preloader";
-import {Packs} from "./components/PacksComponents/Packs/Packs";
+import {Packs} from './components/Packs/Packs';
+
 
 //
 function App() {
@@ -22,6 +22,8 @@ function App() {
         <Switch>
           <Route exact path={routes.profile}
                  render={() => <Profile/>}/>
+            <Route exact path={routes.profile}
+                 render={() => <Packs/>}/>
           <Route path={routes.login}
                  render={() => <Login/>}/>
           <Route path={routes.registration}
