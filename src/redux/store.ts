@@ -12,8 +12,7 @@ const rootReducer = combineReducers({
   registration: reducerRegistration,
   restore: reducerRestorePassword,
   app: appReducer,
-  cards:packReducer
-  app: appReducer,
+  cards: packReducer,
   packs: reducerPacks
 })
 
