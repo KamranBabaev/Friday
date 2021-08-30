@@ -33,6 +33,7 @@ export const RestorePassword = () => {
   }
 
   const restoreHandler = () => {
+    console.log('kuku')
     setInitialized(true)
     dispatch(restorePasswordTC(password, token))
     setPassword('')
@@ -40,7 +41,7 @@ export const RestorePassword = () => {
 
 
   if (updatePassword) {
-    return <Redirect to={'/login'}/>
+    return <Redirect to={routes.login}/>
   }
 
   return (
