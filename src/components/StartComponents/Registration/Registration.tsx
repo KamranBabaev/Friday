@@ -1,25 +1,24 @@
-import {SuperButton} from '../common/c2-SuperButton/SuperButton';
+import {SuperButton} from '../../common/c2-SuperButton/SuperButton';
 import styles from './Registration.module.css'
-import stylesContainer from '../common/styles/Container.module.css'
-import eye from '../common/icons/eye.png'
-import closedEye from '../common/icons/closedEye.png'
+import stylesContainer from '../../common/styles/Container.module.css'
+import eye from '../../common/icons/eye.png'
+import closedEye from '../../common/icons/closedEye.png'
 import React, {ChangeEvent, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from '../../redux/store';
-import {registrationTC} from '../../redux/reducers/reducerRegistration';
+import {AppRootStateType} from '../../../redux/store';
+import {registrationTC} from '../../../redux/reducers/reducerRegistration';
 import {Redirect} from 'react-router-dom';
-import {Preloader} from "../common/preloader/Preloader";
+import {Preloader} from "../../common/preloader/Preloader";
 import {
-    emailErrorMessage,
-    validateEmail,
-    validateEmailStyles
-} from "../common/validation/emailValidation";
+  emailErrorMessage,
+  validateEmail,
+  validateEmailStyles
+} from "../../common/validation/emailValidation";
 import {
-    confirmPasswordMessage, confirmPasswordStyles,
-    passwordErrorMessage,
-    validatePasswordStyles
-} from "../common/validation/passwordValidation";
-import {routes} from "../../App";
+  confirmPasswordMessage, confirmPasswordStyles,
+  passwordErrorMessage,
+  validatePasswordStyles
+} from "../../common/validation/passwordValidation";
 
 export const Registration = () => {
     const dispatch = useDispatch()
@@ -33,40 +32,42 @@ export const Registration = () => {
     const [disabledBtn, setDisabledBtn] = useState(false)
 
 
-    const emailTarget = (e: ChangeEvent<HTMLInputElement>) => {
-        setDisabledBtn(!(validateEmail(e.currentTarget.value) && (password.length > 7) && (passwordConfirm === password)))
-        setEmail(e.currentTarget.value)
-    }
+  const emailTarget = (e: ChangeEvent<HTMLInputElement>) => {
+    setDisabledBtn(!(validateEmail(e.currentTarget.value) && (password.length > 7) && (passwordConfirm === password)))
+    setEmail(e.currentTarget.value)
+  }
 
-    const passwordTarget = (e: ChangeEvent<HTMLInputElement>) => {
-        setDisabledBtn(!(validateEmail(email) && (e.currentTarget.value.length > 7) && (passwordConfirm === e.currentTarget.value)))
-        setPassword(e.currentTarget.value)
-    }
-    const passwordConfirmTarget = (e: ChangeEvent<HTMLInputElement>) => {
-        setDisabledBtn(!(validateEmail(email) && (e.currentTarget.value.length > 7) && (password === e.currentTarget.value)))
-        setPasswordConfirm(e.currentTarget.value)
-    }
+  const passwordTarget = (e: ChangeEvent<HTMLInputElement>) => {
+    setDisabledBtn(!(validateEmail(email) && (e.currentTarget.value.length > 7) && (passwordConfirm === e.currentTarget.value)))
+    setPassword(e.currentTarget.value)
+  }
+  const passwordConfirmTarget = (e: ChangeEvent<HTMLInputElement>) => {
+    setDisabledBtn(!(validateEmail(email) && (e.currentTarget.value.length > 7) && (password === e.currentTarget.value)))
+    setPasswordConfirm(e.currentTarget.value)
+  }
 
-    const changeViewPassword = () => {
-        setOpenPassword(!openPassword)
-    }
+  const changeViewPassword = () => {
+    setOpenPassword(!openPassword)
+  }
 
-    const registerHandler = () => {
-        setInitialized(true)
-        if (password === passwordConfirm) {
-            dispatch(registrationTC(email, password))
-            setEmail('')
-            setPassword('')
-            setPasswordConfirm('')
-        }
+  const registerHandler = () => {
+    setInitialized(true)
+    if (password === passwordConfirm) {
+      setTimeout(() => dispatch(registrationTC(email, password)), 1000)
+      setEmail('')
+      setPassword('')
+      setPasswordConfirm('')
+    } else {
+      alert('Пароли не совпадают.')
     }
+  }
 
-    const clearAllInputs = () => {
-        setEmail("")
-        setPassword("")
-        setPasswordConfirm("")
-        setDisabledBtn(true)
-    }
+  const clearAllInputs = () => {
+    setEmail("")
+    setPassword("")
+    setPasswordConfirm("")
+    setDisabledBtn(true)
+  }
 
 
     if (authoriseMe) {

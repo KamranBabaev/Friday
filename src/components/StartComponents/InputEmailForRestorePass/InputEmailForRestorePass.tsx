@@ -1,17 +1,17 @@
-import {SuperButton} from "../common/c2-SuperButton/SuperButton";
-import stylesContainer from "../common/styles/Container.module.css";
+import {SuperButton} from "../../common/c2-SuperButton/SuperButton";
+import stylesContainer from "../../common/styles/Container.module.css";
 import {NavLink, Redirect} from "react-router-dom";
 import styles from "./InputEmailForRestorePass.module.css"
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../redux/store";
+import {AppRootStateType} from "../../../redux/store";
 import React, {ChangeEvent, useState} from "react";
-import {sendEmailForUpdatePasswordTC} from "../../redux/reducers/reducerRestorePassword";
-import {Preloader} from "../common/preloader/Preloader";
+import {sendEmailForUpdatePasswordTC} from "../../../redux/reducers/reducerRestorePassword";
+import {Preloader} from "../../common/preloader/Preloader";
 import {
   emailErrorMessage,
   validateEmail,
   validateEmailStyles
-} from "../common/validation/emailValidation";
+} from "../../common/validation/emailValidation";
 
 
 export const InputEmailForRestorePass = () => {

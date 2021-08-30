@@ -10,6 +10,9 @@ export const Header = () => {
             <NavLink to={'/'}>Profile</NavLink>
           </div>
           <div>
+            <NavLink to={'/packs'}>Packs</NavLink>
+          </div>
+          <div>
             <NavLink to={'/login'}>Login</NavLink>
           </div>
           {/*<div>*/}
