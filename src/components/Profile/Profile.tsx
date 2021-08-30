@@ -14,9 +14,9 @@ export const Profile = () => {
     dispatch(Logout())
   }
 
-  if (!authMe) {
-    return <Redirect to={'/login'}/>
-  }
+  // if (!authMe) {
+  //   return <Redirect to={'/login'}/>
+  // }
 
   return (
       <div className={styles.profile}>

@@ -1,24 +1,24 @@
-import {SuperButton} from '../common/c2-SuperButton/SuperButton';
+import {SuperButton} from '../../common/c2-SuperButton/SuperButton';
 import styles from './Registration.module.css'
-import stylesContainer from '../common/styles/Container.module.css'
-import eye from '../common/icons/eye.png'
-import closedEye from '../common/icons/closedEye.png'
+import stylesContainer from '../../common/styles/Container.module.css'
+import eye from '../../common/icons/eye.png'
+import closedEye from '../../common/icons/closedEye.png'
 import React, {ChangeEvent, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from '../../redux/store';
-import {registrationTC} from '../../redux/reducers/reducerRegistration';
+import {AppRootStateType} from '../../../redux/store';
+import {registrationTC} from '../../../redux/reducers/reducerRegistration';
 import {Redirect} from 'react-router-dom';
-import {Preloader} from "../common/preloader/Preloader";
+import {Preloader} from "../../common/preloader/Preloader";
 import {
   emailErrorMessage,
   validateEmail,
   validateEmailStyles
-} from "../common/validation/emailValidation";
+} from "../../common/validation/emailValidation";
 import {
   confirmPasswordMessage, confirmPasswordStyles,
   passwordErrorMessage,
   validatePasswordStyles
-} from "../common/validation/passwordValidation";
+} from "../../common/validation/passwordValidation";
 
 export const Registration = () => {
   const dispatch = useDispatch()
