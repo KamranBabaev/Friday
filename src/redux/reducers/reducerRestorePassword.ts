@@ -39,9 +39,9 @@ export const sendEmailForUpdatePasswordTC = (email: string, from: string, messag
 
 
 export const restorePasswordTC = (password: string, token: string) => async (dispatch: any) => {
-  dispatch(entityStatusAC())
-  await RestorePasswordAPI.restorePassword(password, token)
   try {
+    dispatch(entityStatusAC())
+    await RestorePasswordAPI.restorePassword(password, token)
     dispatch(restorePasswordAC(true))
   } catch {
     dispatch(restorePasswordAC(false))

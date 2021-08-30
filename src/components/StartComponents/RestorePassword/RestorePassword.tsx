@@ -9,10 +9,12 @@ import eye from "../../common/icons/eye.png";
 import closedEye from "../../common/icons/closedEye.png";
 import {Redirect, useParams} from "react-router-dom";
 import {Preloader} from "../../common/preloader/Preloader";
+import {routes} from "../../../App";
 import {
   passwordErrorMessage,
   validatePasswordStyles
 } from "../../common/validation/passwordValidation";
+
 
 export const RestorePassword = () => {
   const [openPassword, setOpenPassword] = useState(false)
@@ -38,7 +40,6 @@ export const RestorePassword = () => {
     dispatch(restorePasswordTC(password, token))
     setPassword('')
   }
-
 
   if (updatePassword) {
     return <Redirect to={routes.login}/>

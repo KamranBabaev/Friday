@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../redux/store';
 import {Logout} from '../../redux/reducers/reducerLogin';
 import {Redirect} from 'react-router-dom';
+import {routes} from "../../App";
 
 export const Profile = () => {
 
@@ -14,9 +15,9 @@ export const Profile = () => {
     dispatch(Logout())
   }
 
-  // if (!authMe) {
-  //   return <Redirect to={'/login'}/>
-  // }
+  if (!authMe) {
+    return <Redirect to={routes.login}/>
+  }
 
   return (
       <div className={styles.profile}>

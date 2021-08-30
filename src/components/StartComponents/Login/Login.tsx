@@ -14,6 +14,7 @@ import {
   validateEmail,
   validateEmailStyles
 } from "../../common/validation/emailValidation";
+import {routes} from "../../../App";
 import {
   passwordErrorMessage,
   validatePasswordStyles
@@ -55,7 +56,7 @@ export const Login = () => {
   }
 
   if (authMe) {
-    return <Redirect to={'/'}/>
+    return <Redirect to={routes.profile}/>
   }
 
   return (
@@ -90,7 +91,7 @@ export const Login = () => {
             </div>
             {passwordErrorMessage(password)}
             <div className={styles.restorePasswordBlock}>
-              <NavLink to={'/inputemail'}>
+              <NavLink to={routes.inputEmailForRestorePass}>
                 forgot password?
               </NavLink>
             </div>
@@ -107,7 +108,7 @@ export const Login = () => {
                        onClickHandler={loginHandler}/>
           <p>Don't have an account?</p>
           <div className={styles.loginBlock}>
-            <NavLink to={'/registration'}>
+            <NavLink to={routes.registration}>
               Sign Up</NavLink>
           </div>
         </form>

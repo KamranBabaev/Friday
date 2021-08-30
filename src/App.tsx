@@ -13,37 +13,50 @@ import {CheckEmail} from "./components/StartComponents/CheckEmail/CheckEmail";
 import {Preloader} from "./components/common/preloader/Preloader";
 import {Packs} from "./components/PacksComponents/Packs/Packs";
 
-
 function App() {
 
   return (
       <div className="App">
         <Header/>
         <Switch>
-          <Route exact path={'/'}
+          <Route exact path={routes.profile}
                  render={() => <Profile/>}/>
-          <Route path={'/packs'}
+          <Route exact path={routes.packs}
                  render={() => <Packs/>}/>
-          <Route path={'/login'}
+          <Route path={routes.login}
                  render={() => <Login/>}/>
-          <Route path={'/registration'}
+          <Route path={routes.registration}
                  render={() => <Registration/>}/>
-          <Route path={'/testPage'}
+          <Route path={routes.test}
                  render={() => <TestPage/>}/>
-          <Route path={'/checkemail'}
+          <Route path={routes.checkEmail}
                  render={() => <CheckEmail/>}/>
-          <Route path={'/inputpassword'}
+          <Route path={routes.inputPassword}
                  render={() => <InputPassword/>}/>
-          <Route path={'/inputemail'}
+          <Route path={routes.inputEmailForRestorePass}
                  render={() => <InputEmailForRestorePass/>}/>
-          <Route path={`/restorpassword/:token`}
+          <Route path={`${routes.restorePassword}/:token`}
                  render={() => <RestorePassword/>}/>
-          <Route path={'*'}
+          <Route path={routes.error404}
                  render={() => <Error404/>}/>
         </Switch>
 
       </div>
   );
+}
+
+
+export const routes = {
+    profile: '/',
+    packs: '/packs',
+    login: '/login',
+    registration: '/registration',
+    test: '/testpage',
+    checkEmail: '/checkemail',
+    inputPassword: '/inputpassword',
+    inputEmailForRestorePass:'/inputemail',
+    restorePassword: `/restorpassword`,
+    error404: '*'
 }
 
 export default App;

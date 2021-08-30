@@ -19,17 +19,18 @@ import {
   passwordErrorMessage,
   validatePasswordStyles
 } from "../../common/validation/passwordValidation";
+import {routes} from "../../../App";
 
 export const Registration = () => {
-  const dispatch = useDispatch()
-  const authoriseMe = useSelector<AppRootStateType, boolean>(state => state.registration.authoriseMe)
-  const entityStatus = useSelector<AppRootStateType, boolean>(state => state.registration.entityStatus)
-  const [openPassword, setOpenPassword] = useState(false)
-  const [initialized, setInitialized] = useState(false)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [passwordConfirm, setPasswordConfirm] = useState('')
-  const [disabledBtn, setDisabledBtn] = useState(false)
+    const dispatch = useDispatch()
+    const authoriseMe = useSelector<AppRootStateType, boolean>(state => state.registration.authoriseMe)
+    const entityStatus = useSelector<AppRootStateType, boolean>(state => state.registration.entityStatus)
+    const [openPassword, setOpenPassword] = useState(false)
+    const [initialized, setInitialized] = useState(false)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [passwordConfirm, setPasswordConfirm] = useState('')
+    const [disabledBtn, setDisabledBtn] = useState(false)
 
 
   const emailTarget = (e: ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +59,7 @@ export const Registration = () => {
       setPassword('')
       setPasswordConfirm('')
     } else {
-      alert('Парли не совпадают.')
+      alert('Пароли не совпадают.')
     }
   }
 
@@ -70,65 +71,65 @@ export const Registration = () => {
   }
 
 
-  if (authoriseMe) {
-    return <Redirect to={'/profile'}/>
-  }
-  return (
-      <div className={stylesContainer.container}>
-        <div className={stylesContainer.titleApp}>
-          <h1>Brain storm</h1>
-          <h2>Sign up</h2>
+    if (authoriseMe) {
+        return <Redirect to={routes.profile}/>
+    }
+    return (
+        <div className={stylesContainer.container}>
+            <div className={stylesContainer.titleApp}>
+                <h1>Brain storm</h1>
+                <h2>Sign up</h2>
+            </div>
+            {initialized && <Preloader/>}
+            <form className={stylesContainer.form}>
+                <div className={stylesContainer.item}>
+                    <p>Email:</p>
+                    <div style={validateEmailStyles(email)}
+                         className={stylesContainer.inputBlock}>
+                        <input
+                            onChange={emailTarget}
+                            value={email}
+                            type="text"
+                            placeholder="example@ddd.com"
+                            autoFocus/>
+                    </div>
+                    {emailErrorMessage(email)}
+                </div>
+                <div className={stylesContainer.item}>
+                    <p>Password:</p>
+                    <div style={validatePasswordStyles(password)}
+                         className={stylesContainer.inputBlock}>
+                        <input
+                            onChange={passwordTarget}
+                            value={password}
+                            type={openPassword ? 'text' : 'password'}
+                            placeholder="****"/>
+                        <img onClick={changeViewPassword} alt=""
+                             src={openPassword ? eye : closedEye}/>
+                    </div>
+                    {passwordErrorMessage(password)}
+                </div>
+                <div className={stylesContainer.item}>
+                    <p>Confirm password:</p>
+                    <div style={confirmPasswordStyles(password, passwordConfirm)}
+                         className={stylesContainer.inputBlock}>
+                        <input
+                            onChange={passwordConfirmTarget}
+                            value={passwordConfirm}
+                            type={openPassword ? 'text' : 'password'}
+                            placeholder="****"/>
+                        <img onClick={changeViewPassword} alt=""
+                             src={openPassword ? eye : closedEye}/>
+                    </div>
+                    {confirmPasswordMessage(password, passwordConfirm)}
+                </div>
+                <div className={styles.buttons}>
+                    <SuperButton onClickHandler={clearAllInputs} title="Cancel"/>
+                    <SuperButton entityStatus={entityStatus}
+                                 onClickHandler={registerHandler}
+                                 disabledBtn={disabledBtn} title="Register"/>
+                </div>
+            </form>
         </div>
-        {initialized && <Preloader/>}
-        <form className={stylesContainer.form}>
-          <div className={stylesContainer.item}>
-            <p>Email:</p>
-            <div style={validateEmailStyles(email)}
-                 className={stylesContainer.inputBlock}>
-              <input
-                  onChange={emailTarget}
-                  value={email}
-                  type="text"
-                  placeholder="example@ddd.com"
-                  autoFocus/>
-            </div>
-            {emailErrorMessage(email)}
-          </div>
-          <div className={stylesContainer.item}>
-            <p>Password:</p>
-            <div style={validatePasswordStyles(password)}
-                 className={stylesContainer.inputBlock}>
-              <input
-                  onChange={passwordTarget}
-                  value={password}
-                  type={openPassword ? 'text' : 'password'}
-                  placeholder="****"/>
-              <img onClick={changeViewPassword} alt=""
-                   src={openPassword ? eye : closedEye}/>
-            </div>
-            {passwordErrorMessage(password)}
-          </div>
-          <div className={stylesContainer.item}>
-            <p>Confirm password:</p>
-            <div style={confirmPasswordStyles(password, passwordConfirm)}
-                 className={stylesContainer.inputBlock}>
-              <input
-                  onChange={passwordConfirmTarget}
-                  value={passwordConfirm}
-                  type={openPassword ? 'text' : 'password'}
-                  placeholder="****"/>
-              <img onClick={changeViewPassword} alt=""
-                   src={openPassword ? eye : closedEye}/>
-            </div>
-            {confirmPasswordMessage(password, passwordConfirm)}
-          </div>
-          <div className={styles.buttons}>
-            <SuperButton onClickHandler={clearAllInputs} title="Cancel"/>
-            <SuperButton entityStatus={entityStatus}
-                         onClickHandler={registerHandler}
-                         disabledBtn={disabledBtn} title="Register"/>
-          </div>
-        </form>
-      </div>
-  )
+    )
 }
