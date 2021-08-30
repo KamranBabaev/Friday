@@ -1,4 +1,4 @@
-import styles from "./emailValidatino.module.css";
+import styles from "./emailValidation.module.css";
 import React from "react";
 
 

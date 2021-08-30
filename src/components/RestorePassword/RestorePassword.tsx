@@ -13,6 +13,7 @@ import {
   passwordErrorMessage,
   validatePasswordStyles
 } from "../common/validation/passwordValidation";
+import {routes} from "../../App";
 
 export const RestorePassword = () => {
   const [openPassword, setOpenPassword] = useState(false)
@@ -38,9 +39,8 @@ export const RestorePassword = () => {
     setPassword('')
   }
 
-
   if (updatePassword) {
-    return <Redirect to={'/login'}/>
+    return <Redirect to={routes.login}/>
   }
 
   return (
