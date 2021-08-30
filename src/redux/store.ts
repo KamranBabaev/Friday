@@ -6,7 +6,7 @@ import {reducerRestorePassword} from "./reducers/reducerRestorePassword";
 import {appReducer} from "./reducers/reducerApp";
 import {packReducer} from './reducers/reducerCards';
 
-
+//rt
 const rootReducer = combineReducers({
   login: reducerLogin,
   registration: reducerRegistration,
