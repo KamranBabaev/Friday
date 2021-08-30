@@ -12,7 +12,7 @@ import {InputEmailForRestorePass} from './components/InputEmailForRestorePass/In
 import {CheckEmail} from './components/CheckEmail/CheckEmail';
 import {Packs} from './components/Packs/Packs';
 
-
+//
 function App() {
 
     return (
