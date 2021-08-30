@@ -4,12 +4,14 @@ import thunk from "redux-thunk";
 import {reducerRegistration} from './reducers/reducerRegistration';
 import {reducerRestorePassword} from "./reducers/reducerRestorePassword";
 import {appReducer} from "./reducers/reducerApp";
+import {packReducer} from './reducers/reducerCards';
 
 const rootReducer = combineReducers({
   login: reducerLogin,
   registration: reducerRegistration,
   restore: reducerRestorePassword,
-  app: appReducer
+  app: appReducer,
+  cards:packReducer
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
