@@ -4,7 +4,7 @@ import {useEffect} from 'react';
 import {fetchCardsTC} from '../../redux/reducers/reducerCards';
 import styles from './packs.module.css'
 
-
+//11
 export const Packs = () => {
     const cards = useSelector<AppRootStateType, string>(state => state.cards)
     const dispatch = useDispatch()
