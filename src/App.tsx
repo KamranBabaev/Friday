@@ -10,10 +10,10 @@ import {Header} from "./components/Header/Header";
 import {RestorePassword} from './components/StartComponents/RestorePassword/RestorePassword';
 import {InputEmailForRestorePass} from "./components/StartComponents/InputEmailForRestorePass/InputEmailForRestorePass";
 import {CheckEmail} from "./components/StartComponents/CheckEmail/CheckEmail";
-import {Packs} from './components/Packs/Packs';
+import {Preloader} from "./components/common/preloader/Preloader";
+import {Packs} from "./components/PacksComponents/Packs/Packs";
 
 
-//
 function App() {
 
   return (
@@ -22,7 +22,7 @@ function App() {
         <Switch>
           <Route exact path={routes.profile}
                  render={() => <Profile/>}/>
-            <Route exact path={routes.profile}
+          <Route exact path={routes.packs}
                  render={() => <Packs/>}/>
           <Route path={routes.login}
                  render={() => <Login/>}/>
@@ -36,7 +36,7 @@ function App() {
                  render={() => <InputPassword/>}/>
           <Route path={routes.inputEmailForRestorePass}
                  render={() => <InputEmailForRestorePass/>}/>
-          <Route path={routes.restorePassword}
+          <Route path={`${routes.restorePassword}/:token`}
                  render={() => <RestorePassword/>}/>
           <Route path={routes.error404}
                  render={() => <Error404/>}/>
@@ -49,13 +49,14 @@ function App() {
 
 export const routes = {
     profile: '/',
+    packs: '/packs',
     login: '/login',
     registration: '/registration',
     test: '/testpage',
     checkEmail: '/checkemail',
     inputPassword: '/inputpassword',
     inputEmailForRestorePass:'/inputemail',
-    restorePassword: `/restorpassword/:token`,
+    restorePassword: `/restorpassword`,
     error404: '*'
 }
 

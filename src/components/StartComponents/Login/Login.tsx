@@ -14,11 +14,11 @@ import {
   validateEmail,
   validateEmailStyles
 } from "../../common/validation/emailValidation";
+import {routes} from "../../../App";
 import {
   passwordErrorMessage,
   validatePasswordStyles
-} from "../common/validation/passwordValidation";
-import {routes} from "../../App";
+} from "../../common/validation/passwordValidation";
 
 export const Login = () => {
 

@@ -31,6 +31,7 @@ export const RegistrationAPI = {
 
 export const RestorePasswordAPI = {
   async restorePassword(password: string, resetPasswordToken: string) {
+    debugger
     return await instance.post<requestPostType>('/auth/set-new-password', {
       password,
       resetPasswordToken

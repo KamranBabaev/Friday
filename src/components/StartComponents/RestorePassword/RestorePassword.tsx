@@ -9,11 +9,12 @@ import eye from "../../common/icons/eye.png";
 import closedEye from "../../common/icons/closedEye.png";
 import {Redirect, useParams} from "react-router-dom";
 import {Preloader} from "../../common/preloader/Preloader";
+import {routes} from "../../../App";
 import {
   passwordErrorMessage,
   validatePasswordStyles
-} from "../common/validation/passwordValidation";
-import {routes} from "../../App";
+} from "../../common/validation/passwordValidation";
+
 
 export const RestorePassword = () => {
   const [openPassword, setOpenPassword] = useState(false)
@@ -34,6 +35,7 @@ export const RestorePassword = () => {
   }
 
   const restoreHandler = () => {
+    console.log('kuku')
     setInitialized(true)
     dispatch(restorePasswordTC(password, token))
     setPassword('')

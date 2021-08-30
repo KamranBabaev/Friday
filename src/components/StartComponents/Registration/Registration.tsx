@@ -19,6 +19,7 @@ import {
   passwordErrorMessage,
   validatePasswordStyles
 } from "../../common/validation/passwordValidation";
+import {routes} from "../../../App";
 
 export const Registration = () => {
     const dispatch = useDispatch()
