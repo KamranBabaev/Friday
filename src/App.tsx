@@ -1,48 +1,60 @@
 import './App.css';
 import {Route, Switch} from 'react-router-dom';
-import {Login} from './components/Login/Login';
+import {Login} from './components/StartComponents/Login/Login';
 import {Profile} from './components/Profile/Profile';
-import {Registration} from './components/Registration/Registration';
+import {Registration} from './components/StartComponents/Registration/Registration';
 import {TestPage} from './components/TestPage/TestPage';
-import {InputPassword} from './components/InputPassword/InputPassword';
+import {InputPassword} from './components/StartComponents/InputPassword/InputPassword';
 import {Error404} from './components/Error404/Error404';
-import {Header} from './components/Header/Header';
-import {RestorePassword} from './components/RestorePassword/RestorePassword';
-import {InputEmailForRestorePass} from './components/InputEmailForRestorePass/InputEmailForRestorePass';
-import {CheckEmail} from './components/CheckEmail/CheckEmail';
-import {Packs} from './components/Packs/Packs';
+import {Header} from "./components/Header/Header";
+import {RestorePassword} from './components/StartComponents/RestorePassword/RestorePassword';
+import {InputEmailForRestorePass} from "./components/StartComponents/InputEmailForRestorePass/InputEmailForRestorePass";
+import {CheckEmail} from "./components/StartComponents/CheckEmail/CheckEmail";
+import {Preloader} from "./components/common/preloader/Preloader";
+import {Packs} from "./components/PacksComponents/Packs/Packs";
 
 //
 function App() {
 
-    return (
-        <div className="App">
-            <Header/>
-            <Switch>
-                <Route exact path={'/'}
-                       render={() => <Profile/>}/>
-                <Route path={'/login'}
-                       render={() => <Login/>}/>
-                <Route path={'/registration'}
-                       render={() => <Registration/>}/>
-                <Route path={'/testPage'}
-                       render={() => <TestPage/>}/>
-                <Route path={'/checkemail'}
-                       render={() => <CheckEmail/>}/>
-                <Route path={'/inputpassword'}
-                       render={() => <InputPassword/>}/>
-                <Route path={'/inputemail'}
-                       render={() => <InputEmailForRestorePass/>}/>
-                <Route path={`/restorpassword/:token`}
-                       render={() => <RestorePassword/>}/>
-                <Route exact path={'/packs'}
-                       render={() => <Packs/>}/>
-                <Route path={'*'}
-                       render={() => <Error404/>}/>
-            </Switch>
+  return (
+      <div className="App">
+        <Header/>
+        <Switch>
+          <Route exact path={routes.profile}
+                 render={() => <Profile/>}/>
+          <Route path={routes.login}
+                 render={() => <Login/>}/>
+          <Route path={routes.registration}
+                 render={() => <Registration/>}/>
+          <Route path={routes.test}
+                 render={() => <TestPage/>}/>
+          <Route path={routes.checkEmail}
+                 render={() => <CheckEmail/>}/>
+          <Route path={routes.inputPassword}
+                 render={() => <InputPassword/>}/>
+          <Route path={routes.inputEmailForRestorePass}
+                 render={() => <InputEmailForRestorePass/>}/>
+          <Route path={routes.restorePassword}
+                 render={() => <RestorePassword/>}/>
+          <Route path={routes.error404}
+                 render={() => <Error404/>}/>
+        </Switch>
 
-        </div>
-    );
+      </div>
+  );
+}
+
+
+export const routes = {
+    profile: '/',
+    login: '/login',
+    registration: '/registration',
+    test: '/testpage',
+    checkEmail: '/checkemail',
+    inputPassword: '/inputpassword',
+    inputEmailForRestorePass:'/inputemail',
+    restorePassword: `/restorpassword/:token`,
+    error404: '*'
 }
 
 export default App;

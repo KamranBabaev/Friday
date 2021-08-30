@@ -38,7 +38,6 @@ export const loginTC = (email: string, password: string, checked: boolean) => as
   dispatch(setInitializedAC(false))
 }
 
-
 export const Logout = () => async (dispatch: any) => {
   try {
     await LoginAPI.logout()

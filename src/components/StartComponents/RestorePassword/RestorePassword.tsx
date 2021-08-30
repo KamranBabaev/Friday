@@ -1,18 +1,19 @@
-import {SuperButton} from "../common/c2-SuperButton/SuperButton";
+import {SuperButton} from "../../common/c2-SuperButton/SuperButton";
 import styles from "./RestorePassword.module.css"
-import stylesContainer from "../common/styles/Container.module.css";
+import stylesContainer from "../../common/styles/Container.module.css";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../redux/store";
+import {AppRootStateType} from "../../../redux/store";
 import {ChangeEvent, useState} from "react";
-import {restorePasswordTC} from "../../redux/reducers/reducerRestorePassword";
-import eye from "../common/icons/eye.png";
-import closedEye from "../common/icons/closedEye.png";
+import {restorePasswordTC} from "../../../redux/reducers/reducerRestorePassword";
+import eye from "../../common/icons/eye.png";
+import closedEye from "../../common/icons/closedEye.png";
 import {Redirect, useParams} from "react-router-dom";
-import {Preloader} from "../common/preloader/Preloader";
+import {Preloader} from "../../common/preloader/Preloader";
 import {
   passwordErrorMessage,
   validatePasswordStyles
 } from "../common/validation/passwordValidation";
+import {routes} from "../../App";
 
 export const RestorePassword = () => {
   const [openPassword, setOpenPassword] = useState(false)
@@ -38,9 +39,8 @@ export const RestorePassword = () => {
     setPassword('')
   }
 
-
   if (updatePassword) {
-    return <Redirect to={'/login'}/>
+    return <Redirect to={routes.login}/>
   }
 
   return (

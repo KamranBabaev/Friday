@@ -1,6 +1,6 @@
 import styles from './CheckEmail.module.css'
-import stylesContainer from '../common/styles/Container.module.css'
-import checkEmail from '../common/icons/checkEmail.png'
+import stylesContainer from '../../common/styles/Container.module.css'
+import checkEmail from '../../common/icons/checkEmail.png'
 
 
 export const CheckEmail = () => {
