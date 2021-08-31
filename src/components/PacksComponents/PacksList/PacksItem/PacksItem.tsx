@@ -1,23 +1,33 @@
-import styles from "./PacksItem.module.css";
+import styles from './PacksItem.module.css';
+
+import {NavLink} from 'react-router-dom';
 
 export function PacksItem(props: PacksItemPropsType) {
-  return (
-      <div className={styles.packsItem}>
-        <div className={styles.name}>{props.name}</div>
-        <div className={styles.cards}>{props.cards}</div>
-        <div className={styles.lastUpdate}>{props.lastUpdate}</div>
-        <div className={styles.actions}>
-          <button>Delete</button>
-          <button>Edit</button>
-          <button>Learn</button>
+
+// const cardId=props.cards.map()
+
+    return (
+        <div className={styles.packsItem}>
+            <div className={styles.name}>{props.name}</div>
+            <div className={styles.cards}>{props.cards}</div>
+            <div className={styles.lastUpdate}>{props.lastUpdate}</div>
+            <div className={styles.actions}>
+                <button>Delete</button>
+                <button>Edit</button>
+                <NavLink to={`/cards/${props.id}`}>
+                    <button >Learn</button>
+                </NavLink>
+            </div>
+
         </div>
-      </div>
-  )
+    )
 }
 
 //types
 type PacksItemPropsType = {
-  name: string
-  cards: number
-  lastUpdate: string
+    id: string
+    name: string
+    cards: number
+    lastUpdate: string
+    giveCard: (id: string) => void
 }
