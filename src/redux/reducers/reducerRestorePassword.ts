@@ -33,8 +33,12 @@ export const sendEmailForUpdatePasswordAC = (sendEmail: boolean) => ({
 
 export const sendEmailForUpdatePasswordTC = (email: string, from: string, message: string) => async (dispatch: any) => {
   dispatch(entityStatusAC())
-  await RestorePasswordAPI.sendEmailForUpdatePassword(email, from, message)
-  dispatch(sendEmailForUpdatePasswordAC(true))
+  try {
+    await RestorePasswordAPI.sendEmailForUpdatePassword(email, from, message)
+    dispatch(sendEmailForUpdatePasswordAC(true))
+  } catch (error) {
+    alert(error.response.data.error)
+  }
 }
 
 
