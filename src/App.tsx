@@ -24,7 +24,7 @@ function App() {
                 <Route exact path={routes.packs}
                        render={() => <Packs/>}/>
                 <Route exact path={routes.cards}
-                       render={() => <Cards/>}/>
+                       render={() => <Cards />}/>
                 <Route path={routes.login}
                        render={() => <Login/>}/>
                 <Route path={routes.registration}
