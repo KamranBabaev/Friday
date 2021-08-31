@@ -14,7 +14,7 @@ export const Cards = (props: CardsPropsType) => {
     const cards = useSelector<AppRootStateType, Array<cardsType>>(state => state.cards)
     const dispatch = useDispatch()
     const {id} = useParams<{ id: string }>()
-    console.log(id)
+
 
 
 

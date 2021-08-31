@@ -23,7 +23,6 @@ export function PacksList() {
         return newCard
     }
 
-debugger
     return (
         <div className={styles.mainBlock}>
             <header className={styles.headerPacksList}>

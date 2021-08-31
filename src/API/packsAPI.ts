@@ -42,6 +42,6 @@ export type CardType = {
   user_name: string
   __v: number
   _id: string
-  cardsPack_id:string
+
 }
 

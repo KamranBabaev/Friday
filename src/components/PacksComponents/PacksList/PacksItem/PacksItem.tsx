@@ -1,9 +1,11 @@
 import styles from './PacksItem.module.css';
 
 import {NavLink} from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import {AppRootStateType} from '../../../../redux/store';
 
 export function PacksItem(props: PacksItemPropsType) {
-
+// const idParams=useSelector<AppRootStateType,string>(state => state.)
 // const cardId=props.cards.map()
 
     return (
@@ -18,7 +20,6 @@ export function PacksItem(props: PacksItemPropsType) {
                     <button >Learn</button>
                 </NavLink>
             </div>
-
         </div>
     )
 }
