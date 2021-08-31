@@ -7,8 +7,8 @@ const instance = axios.create({
 
 
 export const PacksAPI = {
-  async getPacks() {
-    return await instance.get<PacksDataType>('/cards/pack?pageCount=14')
+  async getPacks(pageCount: number) {
+    return await instance.get<PacksDataType>(`/cards/pack?pageCount=${pageCount}`)
   }
 }
 

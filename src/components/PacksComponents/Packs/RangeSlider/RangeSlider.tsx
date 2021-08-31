@@ -1,8 +1,15 @@
-import {useCallback, useEffect, useMemo, useState} from "react";
+import {useCallback, useMemo, useState, MouseEvent} from "react";
 import styles from "./RangeSlider.module.css";
+import {useDispatch} from "react-redux";
+import {fetchPacksTC} from "../../../../redux/reducers/reducerPacks";
+
+//types
+type RangeComponentPropsType = {
+  onChangePageCount: (value: number) => void
+}
 
 
-export function RangeComponent() {
+export function RangeComponent(props: RangeComponentPropsType) {
   const [parentVal, setParentVal] = useState(10);
   const sliderValueChanged = useCallback(val => {
     setParentVal(val);
@@ -14,13 +21,16 @@ export function RangeComponent() {
         max: 100,
         value: parentVal,
         step: 5,
-        onChange: (e: any) => sliderValueChanged(e)
+        onChange: (e: any) => sliderValueChanged(e),
+        onChangePageCount: props.onChangePageCount
       }), [parentVal]
   );
 
   return (
       <div>
-        <RangeSlider {...sliderProps}/>
+        <RangeSlider {...sliderProps}
+                     onChangePageCount={props.onChangePageCount}
+        />
       </div>
   )
 }
@@ -29,17 +39,19 @@ export function RangeComponent() {
 export const RangeSlider = ({
                               onChange,
                               value,
+                              onChangePageCount,
                               ...sliderProps
                             }: any) => {
 
   const [sliderVal, setSliderVal] = useState(0);
+  const dispatch = useDispatch()
 
-  useEffect(() => {
-    setSliderVal(value);
-  }, [value]);
+  const onClickHandler = (e: any) => {
+    dispatch(fetchPacksTC(+e.currentTarget.value))
+  }
 
   const changeCallback = (e: any) => {
-    setSliderVal(e.target.value);
+    setSliderVal(+e.target.value);
   }
 
   return (
@@ -51,6 +63,7 @@ export const RangeSlider = ({
                type="range"
                value={sliderVal}
                onChange={changeCallback}
+               onClick={onClickHandler}
         />
       </div>
   )
