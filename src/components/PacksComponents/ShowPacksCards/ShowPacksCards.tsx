@@ -2,7 +2,7 @@ import styles from "./ShowPacksCards.module.css"
 import {RangeComponent} from "../Packs/RangeSlider/RangeSlider";
 import {useState, MouseEvent} from "react";
 
-export function ShowPacksCards() {
+export function ShowPacksCards(props: ShowPacksCardsPropsType) {
 
   const [activeBtn1, setActiveBtn1] = useState(true)
   const [activeBtn2, setActiveBtn2] = useState(false)
@@ -29,9 +29,15 @@ export function ShowPacksCards() {
         </div>
         <div className={styles.rangeBlock}>
           <div className={styles.sliderBlock}>
-            <RangeComponent/>
+            <RangeComponent onChangePageCount={props.onChangePageCount}/>
           </div>
         </div>
       </div>
   )
+}
+
+// types
+
+type ShowPacksCardsPropsType = {
+  onChangePageCount: (value: number) => void
 }
