@@ -32,8 +32,9 @@ export const loginTC = (email: string, password: string, checked: boolean) => as
   try {
     await LoginAPI.authMe(email, password, checked)
     dispatch(loginAC(true))
-  } catch (error) {
-    alert(error.response.data.error)
+  } catch (e) {
+    const error = e.response ? e.response.data.error : (e.message+", more details in the console")
+    alert(error)
   }
   dispatch(setInitializedAC(false))
 }

@@ -27,10 +27,11 @@ export const registrationTC = (email: string, password: string,) => async (dispa
     try {
         await RegistrationAPI.regMe(email, password)
         dispatch(registrationAC(true))
-    } catch (error) {
-        alert(error.response.data.error)
+    } catch (e) {
+        const error = e.response ? e.response.data.error : (e.message + ", more details in the console")
+        alert(error)
     }
-    //dispatch(registrationAC(false))
+    dispatch(registrationAC(false))
 }
 
 // types

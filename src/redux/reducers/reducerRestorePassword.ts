@@ -36,8 +36,9 @@ export const sendEmailForUpdatePasswordTC = (email: string, from: string, messag
   try {
     await RestorePasswordAPI.sendEmailForUpdatePassword(email, from, message)
     dispatch(sendEmailForUpdatePasswordAC(true))
-  } catch (error) {
-    alert(error.response.data.error)
+  } catch (e) {
+    const error = e.response ? e.response.data.error : (e.message+", more details in the console")
+    alert(error)
   }
 }
 
