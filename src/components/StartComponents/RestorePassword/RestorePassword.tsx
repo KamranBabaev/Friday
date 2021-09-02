@@ -20,7 +20,7 @@ export const RestorePassword = () => {
   const [openPassword, setOpenPassword] = useState(false)
   const [initialized, setInitialized] = useState(false)
   const [password, setPassword] = useState('')
-  const updatePassword = useSelector<AppRootStateType, string>(state => state.restore.updatePassword)
+  const updatePassword = useSelector<AppRootStateType, boolean>(state => state.restore.updatePassword)
   const entityStatus = useSelector<AppRootStateType, boolean>(state => state.restore.entityStatus)
   const dispatch = useDispatch()
 

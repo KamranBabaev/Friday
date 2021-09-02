@@ -1,71 +1,75 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../redux/store';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {fetchCardsTC} from '../../redux/reducers/reducerCards';
 import styles from './Cards.module.css'
+
+import {Redirect, useParams} from 'react-router-dom';
 import {cardsType} from '../../API/cardsAPI';
-import {useParams} from 'react-router-dom';
+import {routes} from '../../App';
 
 type CardsPropsType = {
-  id?: string
+    id?: string
 }
 
 export const Cards = (props: CardsPropsType) => {
-  const cards = useSelector<AppRootStateType, Array<cardsType>>(state => state.cards)
-  const dispatch = useDispatch()
-  const {id} = useParams<{ id: string }>()
+    const cards = useSelector<AppRootStateType, Array<cardsType>>(state => state.cards)
+    const dispatch = useDispatch()
+    const {id} = useParams<{ id: string }>()
 
+    const [back, setBack] = useState(false)
 
-  useEffect(() => {
-    dispatch(fetchCardsTC(id))
-  }, [])
+    function backToPacks() {
+        setBack(true)
+    }
 
-  return (
-      <div className={styles.packs}>
-        <div>
-          <h2>Show packs cards</h2>
-          <button>My</button>
-          <button>All</button>
-          <p>Number of cards</p>
-          <p>1-100</p>
-        </div>
-        <div>
-          <h1>Packs list</h1>
-          <div style={{margin: '10px'}}>
-            <input/>
-            <button>Add new pack</button>
-          </div>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            width: '100%',
-            border: '1px solid black'
-          }}>
-            <div style={{width: '150px'}}>question</div>
-            <div style={{width: '150px'}}>answer</div>
-            <div style={{width: '150px'}}>Grade</div>
-            <div style={{width: '150px'}}>updated</div>
+    const deleteCard = () => {
 
-            <div style={{width: '150px'}}>
-              <button>add</button>
+    }
+    const editCard = () => {
+
+    }
+
+    useEffect(() => {
+        dispatch(fetchCardsTC(id))
+    }, [])
+
+    if (back) {
+        return <Redirect to={routes.packs}/>
+    }
+    return (
+        <div className={styles.packs}>
+
+            <div  className={styles.header}>
+                <button onClick={backToPacks}>back</button>
+                <div>Packs list</div>
             </div>
 
-          </div>
+            <input className={styles.inpCard} type="text"
+                   placeholder="Search..."/>
 
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            width: '100%',
-            border: '1px solid black',
-            padding: '10px'
-          }}>
-            {
-              cards.map(c => c._id !== props.id
-                  ? <div style={{width: '150px'}}>{c.question}</div>
-                  : <div>'Not cards'</div>)
-            }
-          </div>
+            <table className={styles.table}>
+                <tr>
+                    <th>Question</th>
+                    <th>Answer</th>
+                    <th>Grade</th>
+                    <th>Updated</th>
+                    <th>Actions</th>
+                </tr>
+                {
+                    cards.map(c => c._id !== props.id && <tr>
+                        <td>{c.question}</td>
+                        <td>{c.answer}</td>
+                        <td>{c.grade}</td>
+                        <td>{c.updated}</td>
+                        <td>
+                            <button onClick={deleteCard}>Delete</button>
+                            <button onClick={editCard}>Edit</button>
+                        </td>
+                    </tr>)
+                }
+            </table>
+
         </div>
-      </div>
-  )
+    )
 }

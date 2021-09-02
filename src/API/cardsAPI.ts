@@ -9,6 +9,15 @@ const instance = axios.create({
 export const CardsAPI = {
     async getCards(id: string) {
         return await instance.get<CardsDataType>(`cards/card?cardsPack_id=${id}`)
+    },
+    async createCards() {
+        return await instance.post('')
+    },
+    async deleteCards() {
+        return await instance.delete('')
+    },
+    async updateCards() {
+        return await instance.put('')
     }
 }
 

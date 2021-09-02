@@ -102,7 +102,8 @@ export const Login = () => {
                    type="checkbox"/>
             <span>remember me</span>
           </div>
-          <SuperButton entityStatus={entityStatus}
+          <SuperButton
+              entityStatus={entityStatus}
                        disabledBtn={disabledBtn}
                        title="Login"
                        onClickHandler={loginHandler}/>

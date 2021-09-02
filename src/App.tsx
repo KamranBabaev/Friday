@@ -9,8 +9,8 @@ import {Header} from './components/Header/Header';
 import {RestorePassword} from './components/StartComponents/RestorePassword/RestorePassword';
 import {InputEmailForRestorePass} from './components/StartComponents/InputEmailForRestorePass/InputEmailForRestorePass';
 import {CheckEmail} from './components/StartComponents/CheckEmail/CheckEmail';
-import {Cards} from './components/CardsComponents/Cards';
 import {Packs} from './components/PacksComponents/Packs/Packs';
+import {Cards} from './components/CardsComponents/Cards';
 
 function App() {
 
@@ -22,7 +22,7 @@ function App() {
                  render={() => <Profile/>}/>
           <Route exact path={routes.packs}
                  render={() => <Packs/>}/>
-          <Route exact path={`${routes.cards}/:id`}
+          <Route path={`${routes.cards}/:id`}
                  render={() => <Cards/>}/>
           <Route path={routes.login}
                  render={() => <Login/>}/>
