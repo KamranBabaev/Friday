@@ -25,7 +25,7 @@ export const Login = () => {
   const dispatch = useDispatch()
   const authMe = useSelector<AppRootStateType, boolean>(state => state.login.authMe)
   const entityStatus = useSelector<AppRootStateType, boolean>(state => state.login.entityStatus)
-  const [initialized, setInitialized] = useState(false)
+  const initialized = useSelector<AppRootStateType, boolean>(state => state.app.initialized)
   const [openPassword, setOpenPassword] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -47,12 +47,10 @@ export const Login = () => {
   }
 
   const loginHandler = () => {
-    setInitialized(true)
     dispatch(loginTC(email, password, checked))
     setEmail('')
     setPassword('')
     setChecked(false)
-    setInitialized(false)
   }
 
   if (authMe) {
