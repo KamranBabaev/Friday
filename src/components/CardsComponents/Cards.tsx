@@ -31,22 +31,23 @@ export const Cards = (props: CardsPropsType) => {
         setSearchValue(text)
     }
 
-    const card = () => {
-        const filterItems = cards.filter((c) =>
-            c.question.toLowerCase().includes(searchValue.toLowerCase())
-        )
-        return filterItems.map(c => c._id !== props.id
-            && <tr>
-                <td>{c.question}</td>
-                <td>{c.answer}</td>
-                <td>{c.grade}</td>
-                <td>{c.updated}</td>
-                <td>
-                    <button onClick={deleteCard}>Delete</button>
-                    <button onClick={editCard}>Edit</button>
-                </td>
-            </tr>)
-    }
+  const card = () => {
+    const filterItems = cards.filter((c) =>
+        c.question.toLowerCase().includes(searchValue.toLowerCase())
+    )
+
+    return filterItems.map(c => c._id !== props.id
+        && <tbody key={c._id}>
+      <td>{c.question}</td>
+      <td>{c.answer}</td>
+      <td>{c.grade}</td>
+      <td>{c.updated}</td>
+      <td>
+        <button onClick={deleteCard}>Delete</button>
+        <button onClick={editCard}>Edit</button>
+      </td>
+      </tbody>)
+  }
 
     const deleteCard = () => {
         dispatch(fetchCardsTC(id))

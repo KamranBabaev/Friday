@@ -33,6 +33,7 @@ export function PacksList(props: PacksListPropsType) {
             packs
                 .map(pack =>
                     <PacksItem
+                        key={pack._id}
                         id={pack._id}
                         name={pack.name}
                         cards={pack.cardsCount}
