@@ -5,7 +5,7 @@ const instance = axios.create({
     withCredentials: true
 })
 
-
+//
 export const CardsAPI = {
     async getCards(id: string) {
         return await instance.get<CardsDataType>(`cards/card?cardsPack_id=${id}`)
