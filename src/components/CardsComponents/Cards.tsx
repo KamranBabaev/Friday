@@ -3,6 +3,7 @@ import {AppRootStateType} from '../../redux/store';
 import {ChangeEvent, useEffect, useState} from 'react';
 import {fetchCardsTC} from '../../redux/reducers/reducerCards';
 import styles from './Cards.module.css'
+import s from '../common/styles/stylesPackContainer.module.css'
 
 import {Redirect, useParams} from 'react-router-dom';
 import {cardsType} from '../../API/cardsAPI';
@@ -48,10 +49,10 @@ export const Cards = (props: CardsPropsType) => {
     }
 
     const deleteCard = () => {
-
+        dispatch(fetchCardsTC(id))
     }
     const editCard = () => {
-
+        dispatch(fetchCardsTC(id))
     }
 
     useEffect(() => {
@@ -62,13 +63,13 @@ export const Cards = (props: CardsPropsType) => {
         return <Redirect to={routes.packs}/>
     }
     return (
-        <div className={styles.packs}>
+        <div className={s.container}>
 
             <div className={styles.header}>
                 <button onClick={backToPacks}>back</button>
                 <div>Packs list</div>
             </div>
-            <div className={styles.container}>
+            <div className={styles.box}>
                 <input className={styles.inpCard}
                        value={searchValue}
                        onChange={onChangeSearchInput}

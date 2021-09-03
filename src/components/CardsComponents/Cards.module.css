@@ -11,6 +11,7 @@
 .header {
     display: flex;
     align-items: center;
+    padding: 20px 0 0 20px ;
 }
 
 .header div {
@@ -25,11 +26,12 @@
     margin: 0 10px 0 0;
 }
 
-/*.container{*/
-/*    width: 1000px;*/
-/*}*/
+.box{
+    width: 950px;
+    margin: 0 20px
+}
 .inpCard {
-    width: 995px;
+    width: 940px;
     margin: 20px 10px 20px 0;
     height: 30px;
     background-color: #ECECF9;
@@ -54,5 +56,9 @@
     padding: 15px;
     letter-spacing: revert;
     font-size: 15px;
+
+}
+.table th{
+    color: #506e50;
 }
 
