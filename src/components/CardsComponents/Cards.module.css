@@ -60,5 +60,10 @@
 }
 .table th{
     color: #506e50;
+    padding: 10px;
+}
+.tableBox:hover{
+   box-shadow:  0 0 2px #275252;
+
 }
 

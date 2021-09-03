@@ -37,7 +37,7 @@ export const Cards = (props: CardsPropsType) => {
     )
 
     return filterItems.map(c => c._id !== props.id
-        && <tbody key={c._id}>
+        && <tr className={styles.tableBox} key={c._id}>
       <td>{c.question}</td>
       <td>{c.answer}</td>
       <td>{c.grade}</td>
@@ -46,7 +46,7 @@ export const Cards = (props: CardsPropsType) => {
         <button onClick={deleteCard}>Delete</button>
         <button onClick={editCard}>Edit</button>
       </td>
-      </tbody>)
+      </tr>)
   }
 
     const deleteCard = () => {
@@ -76,6 +76,7 @@ export const Cards = (props: CardsPropsType) => {
                        onChange={onChangeSearchInput}
                        placeholder="Search..."/>
                 <table className={styles.table}>
+                    <thead>
                     <tr>
                         <th>Question</th>
                         <th>Answer</th>
@@ -83,7 +84,10 @@ export const Cards = (props: CardsPropsType) => {
                         <th>Updated</th>
                         <th>Actions</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     {card()}
+                    </tbody>
                 </table>
             </div>
 
