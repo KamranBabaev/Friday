@@ -35,7 +35,6 @@ export const RestorePassword = () => {
   }
 
   const restoreHandler = () => {
-    console.log('kuku')
     setInitialized(true)
     dispatch(restorePasswordTC(password, token))
     setPassword('')

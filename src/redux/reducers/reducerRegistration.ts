@@ -7,11 +7,11 @@ const initState: InitStateType = {
     entityStatus: false
 }
 
-export const reducerRegistration = (state: InitStateType = initState, action: actionType): InitStateType => {
+export const reducerRegistration = (state: any = initState, action: actionType) => {
     switch (action.type) {
         case 'REGISTRATION_ME':
             return {...state, authoriseMe: action.authoriseMe}
-        case 'ENTITY-STATUS':
+        case "ENTITY-STATUS":
             return {...state, entityStatus: true}
         default:
             return state
@@ -25,12 +25,14 @@ export const registrationAC = (authoriseMe: boolean) => ({
 
 export const registrationTC = (email: string, password: string,) => async (dispatch: ThunkDispatch) => {
     dispatch(entityStatusAC())
-    await RegistrationAPI.regMe(email, password)
     try {
+        await RegistrationAPI.regMe(email, password)
         dispatch(registrationAC(true))
-    } catch {
-        dispatch(registrationAC(false))
+    } catch (e) {
+        const error = e.response ? e.response.data.error : (e.message + ", more details in the console")
+        alert(error)
     }
+    dispatch(registrationAC(false))
 }
 
 // types

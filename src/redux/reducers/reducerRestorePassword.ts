@@ -1,5 +1,5 @@
-import {RestorePasswordAPI} from '../../API/loginAPI';
-import {entityStatusAC, entityStatusAT} from './reducerLogin';
+import {RestorePasswordAPI} from "../../API/loginAPI";
+import {entityStatusAC, entityStatusAT} from "./reducerLogin";
 import {Dispatch} from 'redux';
 
 const initState: InitStateType = {
@@ -32,11 +32,16 @@ export const sendEmailForUpdatePasswordAC = (sendEmail: boolean) => ({
     sendEmail
 } as const)
 
-export const sendEmailForUpdatePasswordTC = (email: string, from: string, message: string) => async (dispatch: ThunkDispatch) => {
-        dispatch(entityStatusAC())
-        await RestorePasswordAPI.sendEmailForUpdatePassword(email, from, message)
-        dispatch(sendEmailForUpdatePasswordAC(true))
-    }
+export const sendEmailForUpdatePasswordTC = (email: string, from: string, message: string) => async (dispatch: any) => {
+  dispatch(entityStatusAC())
+  try {
+    await RestorePasswordAPI.sendEmailForUpdatePassword(email, from, message)
+    dispatch(sendEmailForUpdatePasswordAC(true))
+  } catch (e) {
+    const error = e.response ? e.response.data.error : (e.message+", more details in the console")
+    alert(error)
+  }
+}
 
 
 export const restorePasswordTC = (password: string, token: string) => async (dispatch: ThunkDispatch) => {

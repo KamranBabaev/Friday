@@ -1,4 +1,4 @@
-import {LoginAPI} from '../../API/loginAPI';
+import {LoginAPI} from "../../API/loginAPI";
 import {setInitializedAC, setInitializedAT} from './reducerApp';
 import {Dispatch} from 'redux';
 
@@ -27,16 +27,17 @@ export const entityStatusAC = () => ({
     type: 'ENTITY-STATUS',
 } as const)
 
-export const loginTC = (email: string, password: string, checked: boolean) => async (dispatch: ThunkDispatch) => {
-    dispatch(entityStatusAC())
-    dispatch(setInitializedAC(true))
-    try {
-        await LoginAPI.authMe(email, password, checked)
-        dispatch(loginAC(true))
-    } catch (error) {
-        alert(error.response.data.error)
-    }
-    dispatch(setInitializedAC(false))
+export const loginTC = (email: string, password: string, checked: boolean) => async (dispatch: any) => {
+  dispatch(entityStatusAC())
+  dispatch(setInitializedAC(true))
+  try {
+    await LoginAPI.authMe(email, password, checked)
+    dispatch(loginAC(true))
+  } catch (e) {
+    const error = e.response ? e.response.data.error : (e.message+", more details in the console")
+    alert(error)
+  }
+  dispatch(setInitializedAC(false))
 }
 
 export const Logout = () => async (dispatch: ThunkDispatch) => {

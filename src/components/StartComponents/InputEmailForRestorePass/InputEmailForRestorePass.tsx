@@ -39,6 +39,7 @@ export const InputEmailForRestorePass = () => {
     setInitialized(true)
     setTimeout(() => dispatch(sendEmailForUpdatePasswordTC(email, from, message)), 1000)
     setEmail("")
+    setInitialized(false)
   }
 
   if (sendEmail) {
